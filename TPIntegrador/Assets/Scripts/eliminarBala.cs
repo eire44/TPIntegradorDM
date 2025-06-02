@@ -16,7 +16,6 @@ public class eliminarBala : MonoBehaviour
         if(gameObject.transform.position.z > 120)
         {
             Destroy(gameObject);
-            Debug.Log("eliminada");
         }
     }
 
@@ -24,6 +23,10 @@ public class eliminarBala : MonoBehaviour
     {
         if(!collision.gameObject.CompareTag("Player"))
         {
+            if(collision.gameObject.CompareTag("Destroyable"))
+            {
+                Destroy(collision.gameObject);
+            }
             Destroy(gameObject);
         }
 

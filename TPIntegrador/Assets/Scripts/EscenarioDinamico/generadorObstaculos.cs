@@ -12,7 +12,10 @@ public class generadorObstaculos : MonoBehaviour
     float tiempoSpawn = 3f;
 
     public int generador;
-    public float puntoDeSpawn = 70f;
+    [HideInInspector]  public float puntoDeSpawn = 80f;
+
+    public bool noSpawn = false;
+    float spacingZ = 7.5f;
 
     private void Awake()
     {
@@ -27,28 +30,30 @@ public class generadorObstaculos : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!spawneando)
+        if (!spawneando && !noSpawn)
         {
             timerSpawnear -= Time.deltaTime;
         }
 
 
-        if (timerSpawnear <= 0f && !spawneando)
+        if (timerSpawnear <= 0f && !spawneando && !noSpawn)
         {
             timerSpawnear = tiempoSpawn;
 
-            //generador = Random.Range(0, 4);
-            //Debug.Log(generador);
+            generador = Random.Range(0, 3);
 
-            //if (generador == 0)
-            //{
+            if ((generador == 0 || generador == 1) && !noSpawn)
+            {
                 spawneando = true;
                 obstaculos.instancia.spawnearObstaculo();
-            //}
-            //else if (generador == 1)
-            //{
-            //    spawneando = true;
-            //}
+                puntoDeSpawn += spacingZ;
+            }
+            else if (generador == 2)
+            {
+                spawneando = true;
+                noSpawn = true;
+                caminoDinamico.instancia.trampaSpawn = true;
+            }
             //else if (generador == 2)
             //{
             //    spawneando = true;

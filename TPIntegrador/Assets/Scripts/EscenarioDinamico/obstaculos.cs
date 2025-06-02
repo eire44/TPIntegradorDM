@@ -9,6 +9,7 @@ public class obstaculos : MonoBehaviour
     public GameObject barril;
     public GameObject columna;
     public GameObject escombros;
+    public GameObject esqueleto;
     List<Transform> obstaculosLista;
 
     Transform nuevoObstaculo;
@@ -32,8 +33,10 @@ public class obstaculos : MonoBehaviour
 
     public void spawnearObstaculo()
     {
-        int obstaculoTipo = Random.Range(0, 4);
+        int obstaculoTipo = Random.Range(0, 5);
         int carrilX = Random.Range(-1, 2);
+
+        float posY = 0f;
 
         if (obstaculoTipo == 0)
         {
@@ -49,18 +52,18 @@ public class obstaculos : MonoBehaviour
         {
             nuevoObstaculo = Instantiate(columna.transform);
             carrilX = 0;
+            posY = -1;
             //nuevoObstaculo.position = new Vector3(0f, -1f, generadorObstaculos.instanciaControlador.puntoDeSpawn);
-        } else
+        }
+        else if (obstaculoTipo == 3)
         {
             nuevoObstaculo = Instantiate(escombros.transform);
             carrilX = 0;
+        } else
+        {
+            nuevoObstaculo = Instantiate(esqueleto.transform);
         }
 
-        float posY = 0f;
-        if(nuevoObstaculo.transform == columna.transform)
-        {
-            posY = -1;
-        }
         nuevoObstaculo.position = new Vector3(carrilX, posY, generadorObstaculos.instanciaControlador.puntoDeSpawn);
 
 

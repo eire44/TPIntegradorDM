@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class caminoDinamico : MonoBehaviour
@@ -7,6 +8,7 @@ public class caminoDinamico : MonoBehaviour
     public static caminoDinamico instancia;
 
     public GameObject camino;
+    public GameObject trampa;
     float spacingZ = 7.5f;
     public float velocidad = 15f;
 
@@ -15,6 +17,7 @@ public class caminoDinamico : MonoBehaviour
     private float tiempoSiguienteSpawn = 0f;
     private float zActual = 80f;
 
+    public bool trampaSpawn = false;
 
     private void Awake()
     {
@@ -30,14 +33,6 @@ public class caminoDinamico : MonoBehaviour
                 caminoLista.Add(child);
             }
         }
-        //for (int i = 0; i < 15; i++)
-        //{
-        //    GameObject nuevoBloque = Instantiate(camino);
-        //    nuevoBloque.transform.position = new Vector3(0f, -1f, zActual);
-        //    caminoLista.Add(nuevoBloque.transform);
-
-        //    zActual += spacingZ;
-        //}
     }
 
     void Update()
@@ -45,9 +40,20 @@ public class caminoDinamico : MonoBehaviour
 
         if (Time.time >= tiempoSiguienteSpawn)
         {
-            GameObject nuevoBloque = Instantiate(camino);
-            nuevoBloque.transform.position = new Vector3(0f, -1f, zActual);
-
+            GameObject nuevoBloque;
+            if (trampaSpawn)
+            {
+                trampaSpawn = false;
+                nuevoBloque = Instantiate(trampa);
+                nuevoBloque.transform.position = new Vector3(0f, -4.71f, zActual);
+                generadorObstaculos.instanciaControlador.spawneando = false;
+            } else
+            {
+                nuevoBloque = Instantiate(camino);
+                nuevoBloque.transform.position = new Vector3(0f, -1f, zActual);
+                generadorObstaculos.instanciaControlador.noSpawn = false;
+            }
+            
             caminoLista.Add(nuevoBloque.transform);
 
             zActual += spacingZ;
