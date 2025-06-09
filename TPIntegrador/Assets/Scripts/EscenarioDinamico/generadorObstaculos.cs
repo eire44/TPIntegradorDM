@@ -40,36 +40,32 @@ public class generadorObstaculos : MonoBehaviour
         {
             timerSpawnear = tiempoSpawn;
 
-            generador = Random.Range(0, 3);
+            generador = Random.Range(0, 4);
 
             if ((generador == 0 || generador == 1) && !noSpawn)
             {
                 spawneando = true;
                 obstaculos.instancia.spawnearObstaculo();
-                puntoDeSpawn += spacingZ; //pasar a afuera del if para que no coincida con la trampa?
+                aumentarPuntoSpawn(spacingZ); //pasar a afuera del if para que no coincida con la trampa?
             }
             else if (generador == 2)
             {
                 spawneando = true;
                 noSpawn = true;
                 caminoDinamico.instancia.trampaSpawn = true;
+                aumentarPuntoSpawn(spacingZ);
             }
-            //else if (generador == 2)
-            //{
-            //    spawneando = true;
-
-
-            //}
-            //else if (generador == 3)
-            //{
-            //    spawneando = true;
-
-            //    if (Random.Range(0, 100) < 50)
-            //    {
-            //    }
-
-
-            //}
+            else if (generador == 3)
+            {
+                spawneando = true;
+                monedas.instancia.spawnearObstaculo();
+                aumentarPuntoSpawn(spacingZ);
+            }
         }
+    }
+
+    public float aumentarPuntoSpawn(float espacio)
+    {
+        return puntoDeSpawn += espacio;
     }
 }

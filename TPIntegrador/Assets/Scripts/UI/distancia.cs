@@ -6,12 +6,16 @@ using TMPro;
 
 public class distancia : MonoBehaviour
 {
+    public static distancia instancia;
     public TMP_Text distanciaText;
     float velocidad = 10f;
     float tiempoTranscurrido = 0;
-    float distanciaRecorrida = 0;
-   
+    public float distanciaRecorrida = 0;
 
+    private void Awake()
+    {
+        instancia = this;
+    }
     // Start is called before the first frame update
     void Start()
     {

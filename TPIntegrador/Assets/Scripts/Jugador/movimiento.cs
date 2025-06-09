@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class movimiento : MonoBehaviour
 {
+    public static movimiento instancia;
     //Animator animator;
 
     private Vector2 empiezaToque;
@@ -13,7 +14,13 @@ public class movimiento : MonoBehaviour
     public float fuerzaSalto = 10f;
     private Rigidbody rb;
 
+    public int contadorMonedas = 0;
 
+
+    private void Awake()
+    {
+        instancia = this;
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -62,6 +69,18 @@ public class movimiento : MonoBehaviour
         if (Mathf.Abs(rb.velocity.y) < 0.01f) //Evita volver a saltar si aún no aterrizó
         {
             rb.AddForce(Vector3.up * fuerzaSalto, ForceMode.Impulse);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Coin"))
+        {
+            contadorMonedas++;
+            Destroy(collision.gameObject);
+        } else if(collision.gameObject.layer == 3)
+        {
+            Menu.instancia.gameOver();
         }
     }
 }
