@@ -46,7 +46,7 @@ public class generadorObstaculos : MonoBehaviour
             {
                 spawneando = true;
                 obstaculos.instancia.spawnearObstaculo();
-                puntoDeSpawn += spacingZ;
+                puntoDeSpawn += spacingZ; //pasar a afuera del if para que no coincida con la trampa?
             }
             else if (generador == 2)
             {
