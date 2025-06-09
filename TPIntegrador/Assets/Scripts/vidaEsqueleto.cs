@@ -1,26 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class vidaEsqueleto : MonoBehaviour
 {
-    int contadorDaño = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //int contadorDaño = 0;
+    int vidaTotal = 3;
+    int Daño = 1;
+    public Slider SliderVida;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        SliderVida.value = vidaTotal;
+    }
     void Update()
     {
-        if(contadorDaño >= 3)
+        if(vidaTotal == 0)
         {
             Destroy(gameObject);
-
         }
     }
-
+    void RestarVida()
+    {
+        vidaTotal -= Daño;
+        ActualizarSlider();
+    }
+    void ActualizarSlider()
+    {
+        SliderVida.value = vidaTotal;
+    }
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log(collision.gameObject.name);
@@ -28,7 +37,7 @@ public class vidaEsqueleto : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Bullet"))
             {
-                contadorDaño++;
+                RestarVida();
             }
         }
 

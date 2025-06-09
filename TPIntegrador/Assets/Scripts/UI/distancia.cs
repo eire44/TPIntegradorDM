@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class distancia : MonoBehaviour
 {
-    public Text distanciaText;
-    float velocidad = 15f;
+    public TMP_Text distanciaText;
+    float velocidad = 10f;
     float tiempoTranscurrido = 0;
     float distanciaRecorrida = 0;
+   
+
     // Start is called before the first frame update
     void Start()
     {
