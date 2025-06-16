@@ -38,6 +38,7 @@ public class dificultad : MonoBehaviour
         {
             movEscenario.instancia.velocidad = 30;
             caminoDinamico.instancia.velocidad = 30;
+            generadorObstaculos.instanciaControlador.puntoNuevoSpawn = 35;
         }
         else if (nivelDificultad == 5)
         {
@@ -55,6 +56,7 @@ public class dificultad : MonoBehaviour
         {
             movEscenario.instancia.velocidad = 45;
             caminoDinamico.instancia.velocidad = 45;
+            generadorObstaculos.instanciaControlador.puntoNuevoSpawn = 30;
             velocidadBalaJ = 40;
         }
         else if (nivelDificultad == 8)

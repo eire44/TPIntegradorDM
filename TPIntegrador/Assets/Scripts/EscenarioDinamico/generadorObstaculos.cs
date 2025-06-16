@@ -9,6 +9,7 @@ public class generadorObstaculos : MonoBehaviour
     public bool spawneando = false;
     public int generador;
     [HideInInspector]  public float puntoDeSpawn = 120f;
+    [HideInInspector] public float puntoNuevoSpawn = 120f;
 
 
     private void Awake()
@@ -24,7 +25,7 @@ public class generadorObstaculos : MonoBehaviour
 
             if(ultimoSpawn != null)
             {
-                if ((!spawneando) && (ultimoSpawn.transform.position.z <= (puntoDeSpawn - 40)))
+                if ((!spawneando) && (ultimoSpawn.transform.position.z <= (puntoDeSpawn - puntoNuevoSpawn)))
                 {
                     spawneando = true;
                     generarObstaculo();
@@ -45,7 +46,7 @@ public class generadorObstaculos : MonoBehaviour
     private void generarObstaculo()
     {
 
-        generador = Random.Range(0, 4);
+        generador = Random.Range(0, 5);
 
         if ((generador == 0 || generador == 1))
         {
@@ -58,6 +59,10 @@ public class generadorObstaculos : MonoBehaviour
         else if (generador == 3)
         {
             caminoDinamico.instancia.trampaSpawn = true;
+        }
+        else if (generador == 4)
+        {
+            flechas.instancia.spawnearFlechas();
         }
     }
 }
