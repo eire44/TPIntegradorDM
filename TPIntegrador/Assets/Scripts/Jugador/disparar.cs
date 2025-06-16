@@ -7,13 +7,13 @@ public class disparar : MonoBehaviour
     public GameObject balaPrefab;
     public Transform puntoDisparo;
     float velocidadBala = 25f;
-    // Start is called before the first frame update
+    Animator animator;
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         
@@ -22,8 +22,9 @@ public class disparar : MonoBehaviour
     public void disparo()
     {
         velocidadBala = dificultad.instancia.velocidadBalaJ;
-        GameObject bala = Instantiate(balaPrefab, puntoDisparo.position, puntoDisparo.rotation);
+        GameObject bala = Instantiate(balaPrefab, puntoDisparo.position, puntoDisparo.rotation * Quaternion.Euler(90, 0, 0));
         Rigidbody rb = bala.GetComponent<Rigidbody>();
         rb.velocity = puntoDisparo.forward * velocidadBala;
+        animator.SetTrigger("Shoot");
     }
 }

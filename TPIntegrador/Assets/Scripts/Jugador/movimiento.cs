@@ -5,7 +5,7 @@ using UnityEngine;
 public class movimiento : MonoBehaviour
 {
     public static movimiento instancia;
-    //Animator animator;
+    Animator animator;
 
     private Vector2 empiezaToque;
     private Vector2 terminaToque;
@@ -24,7 +24,7 @@ public class movimiento : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -47,16 +47,16 @@ public class movimiento : MonoBehaviour
                     float distanciaTocada = terminaToque.y - empiezaToque.y;
                     if (distanciaTocada > distanciaToque)
                     {
-                        //animator.SetTrigger("jump");
+                        animator.SetTrigger("Jump");
                         Saltar();
                     }
                     else if (distanciaTocada < -distanciaToque)
                     {
-                        //animator.SetTrigger("slide");
+                        animator.SetTrigger("Roll");
                     }
                     else
                     {
-
+                        animator.Play("Run");
                     }
                     break;
             }
@@ -66,7 +66,7 @@ public class movimiento : MonoBehaviour
 
     void Saltar()
     {
-        if (Mathf.Abs(rb.velocity.y) < 0.01f) //Evita volver a saltar si aún no aterrizó
+        if (Mathf.Abs(rb.velocity.y) < 0.01f) 
         {
             rb.AddForce(Vector3.up * fuerzaSalto, ForceMode.Impulse);
         }
@@ -91,7 +91,8 @@ public class movimiento : MonoBehaviour
             if (other.gameObject.name.Contains("FloorTrap"))
             {
                 Menu.instancia.gameOver();
-                
+                animator.SetTrigger("Death");
+    
             }
         }
     }

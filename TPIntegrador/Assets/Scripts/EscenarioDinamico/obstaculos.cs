@@ -33,6 +33,7 @@ public class obstaculos : MonoBehaviour
         else if (obstaculoTipo == 1)
         {
             nuevoObstaculo = Instantiate(barril.transform);
+            posY = +0.5f;
             //nuevoObstaculo.position = new Vector3(0f, 0f, generadorObstaculos.instanciaControlador.puntoDeSpawn);
         }
         else if(obstaculoTipo == 2) 
@@ -49,6 +50,7 @@ public class obstaculos : MonoBehaviour
         } else
         {
             nuevoObstaculo = Instantiate(esqueleto.transform);
+            posY = -1;
         }
 
         nuevoObstaculo.position = new Vector3(carrilX, posY, generadorObstaculos.instanciaControlador.puntoDeSpawn);
