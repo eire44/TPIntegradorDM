@@ -78,9 +78,25 @@ public class movimiento : MonoBehaviour
         {
             contadorMonedas++;
             Destroy(collision.gameObject);
-        } else if(collision.gameObject.layer == 3)
+        } else if(collision.gameObject.layer == 3 && (!collision.gameObject.name.Contains("FloorTrap")))
         {
+            Debug.Log("COLISION");
             Menu.instancia.gameOver();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 3)
+        {
+            if (other.gameObject.name.Contains("FloorTrap"))
+            {
+                //if (transform.position.y < -0.5)
+                //{
+                    Debug.Log("TRIGGER");
+                    Menu.instancia.gameOver();
+                //}
+            }
         }
     }
 }

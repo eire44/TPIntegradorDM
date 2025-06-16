@@ -7,65 +7,57 @@ public class generadorObstaculos : MonoBehaviour
     public static generadorObstaculos instanciaControlador;
 
     public bool spawneando = false;
-
-    float timerSpawnear = 0f;
-    float tiempoSpawn = 3f;
-
     public int generador;
-    [HideInInspector]  public float puntoDeSpawn = 80f;
+    [HideInInspector]  public float puntoDeSpawn = 120f;
 
-    public bool noSpawn = false;
-    float spacingZ = 7.5f;
 
     private void Awake()
     {
         instanciaControlador = this;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        timerSpawnear = tiempoSpawn;
-    }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        if (!spawneando && !noSpawn)
+        if(movEscenario.instancia.obstaculosLista.Count > 0)
         {
-            timerSpawnear -= Time.deltaTime;
-        }
+            Transform ultimoSpawn = movEscenario.instancia.obstaculosLista[movEscenario.instancia.obstaculosLista.Count - 1];
 
-
-        if (timerSpawnear <= 0f && !spawneando && !noSpawn)
+            if(ultimoSpawn != null)
+            {
+                if ((!spawneando) && (ultimoSpawn.transform.position.z <= (puntoDeSpawn - 40)))
+                {
+                    spawneando = true;
+                    generarObstaculo();
+                }
+            } else
+            {
+                spawneando = true;
+                generarObstaculo();
+            }
+            
+        } else
         {
-            timerSpawnear = tiempoSpawn;
-
-            generador = Random.Range(0, 4);
-
-            if ((generador == 0 || generador == 1) && !noSpawn)
-            {
-                spawneando = true;
-                obstaculos.instancia.spawnearObstaculo();
-                aumentarPuntoSpawn(spacingZ); //pasar a afuera del if para que no coincida con la trampa?
-            }
-            else if (generador == 2)
-            {
-                spawneando = true;
-                noSpawn = true;
-                caminoDinamico.instancia.trampaSpawn = true;
-                aumentarPuntoSpawn(spacingZ);
-            }
-            else if (generador == 3)
-            {
-                spawneando = true;
-                monedas.instancia.spawnearObstaculo();
-                aumentarPuntoSpawn(spacingZ);
-            }
+            spawneando = true;
+            generarObstaculo();
         }
     }
 
-    public float aumentarPuntoSpawn(float espacio)
+    private void generarObstaculo()
     {
-        return puntoDeSpawn += espacio;
+
+        generador = Random.Range(0, 4);
+
+        if ((generador == 0 || generador == 1))
+        {
+            obstaculos.instancia.spawnearObstaculo();
+        }
+        else if (generador == 2)
+        {
+            monedas.instancia.spawnearObstaculo();
+        }
+        else if (generador == 3)
+        {
+            caminoDinamico.instancia.trampaSpawn = true;
+        }
     }
 }

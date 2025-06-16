@@ -10,25 +10,12 @@ public class obstaculos : MonoBehaviour
     public GameObject columna;
     public GameObject escombros;
     public GameObject esqueleto;
-    List<Transform> obstaculosLista;
 
     Transform nuevoObstaculo;
 
     private void Awake()
     {
         instancia = this;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        obstaculosLista = new List<Transform>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        destruirObstaculo();
     }
 
     public void spawnearObstaculo()
@@ -67,28 +54,8 @@ public class obstaculos : MonoBehaviour
         nuevoObstaculo.position = new Vector3(carrilX, posY, generadorObstaculos.instanciaControlador.puntoDeSpawn);
 
 
-        obstaculosLista.Add(nuevoObstaculo);
+        movEscenario.instancia.obstaculosLista.Add(nuevoObstaculo);
 
         generadorObstaculos.instanciaControlador.spawneando = false;
-    }
-
-    void destruirObstaculo()
-    {
-        for (int i = 0; i < obstaculosLista.Count; i++)
-        {
-            Transform obstaculo = obstaculosLista[i];
-            if (obstaculo != null)
-            {
-                obstaculo.position += new Vector3(0, 0, -1) * 15f * Time.deltaTime;
-
-                if (obstaculo.position.z < -15f)
-                {
-                    Destroy(obstaculo.gameObject);
-                    obstaculosLista.Remove(obstaculo);
-                    i--;
-                }
-            }
-
-        }
     }
 }

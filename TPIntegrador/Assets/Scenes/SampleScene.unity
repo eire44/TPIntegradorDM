@@ -1523,17 +1523,17 @@ PrefabInstance:
     - target: {fileID: 3638072100860151042, guid: 1ae76920876edf240894170a199c43a8,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.4284
+      value: 3.6646984
       objectReference: {fileID: 0}
     - target: {fileID: 3638072100860151042, guid: 1ae76920876edf240894170a199c43a8,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.4284
+      value: 3.6646984
       objectReference: {fileID: 0}
     - target: {fileID: 3638072100860151042, guid: 1ae76920876edf240894170a199c43a8,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.4284
+      value: 3.6646984
       objectReference: {fileID: 0}
     - target: {fileID: 3638072100860151042, guid: 1ae76920876edf240894170a199c43a8,
         type: 3}
@@ -1996,6 +1996,9 @@ MonoBehaviour:
   trampa: {fileID: 1451246444}
   velocidad: 15
   trampaSpawn: 0
+  pisoLista: []
+  puntoDeSpawn: 80
+  spawneando: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -3875,6 +3878,27 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2086770976}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1451246449
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451246444}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.2034917, y: 1.0319264, z: 2.187563}
+  m_Center: {x: -0.017274285, y: -0.15596457, z: -0.043442633}
 --- !u!1 &1528443015
 GameObject:
   m_ObjectHideFlags: 0
@@ -4549,6 +4573,8 @@ GameObject:
   - component: {fileID: 1748309576}
   - component: {fileID: 1748309575}
   - component: {fileID: 1748309577}
+  - component: {fileID: 1748309578}
+  - component: {fileID: 1748309579}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4603,7 +4629,6 @@ MonoBehaviour:
   spawneando: 0
   generador: 0
   puntoDeSpawn: 80
-  noSpawn: 0
 --- !u!114 &1748309577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4618,6 +4643,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monedasPrefab: {fileID: 5389136639606099505, guid: c8993664480799b4c9e369050d21a760,
     type: 3}
+--- !u!114 &1748309578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748309573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a27084d9e0545d2438c71f07caf3b100, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidad: 15
+  obstaculosLista: []
+--- !u!114 &1748309579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748309573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073276173a882c442af8372782291951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidadAc: 10
+  nivelDificultad: 1
+  velocidadBalaJ: 25
 --- !u!1001 &1780902340
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5226,17 +5280,17 @@ PrefabInstance:
     - target: {fileID: 1294868795353448250, guid: 127f5a695db102f41b2838ae11ef1956,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.7395
+      value: 3.611209
       objectReference: {fileID: 0}
     - target: {fileID: 1294868795353448250, guid: 127f5a695db102f41b2838ae11ef1956,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.7395
+      value: 3.611209
       objectReference: {fileID: 0}
     - target: {fileID: 1294868795353448250, guid: 127f5a695db102f41b2838ae11ef1956,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.7395
+      value: 3.611209
       objectReference: {fileID: 0}
     - target: {fileID: 1294868795353448250, guid: 127f5a695db102f41b2838ae11ef1956,
         type: 3}
@@ -5516,6 +5570,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2264541140631646327, guid: b3cefa392a545304baa10fa50a330ccc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264541140631646327, guid: b3cefa392a545304baa10fa50a330ccc,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3791760430855898647, guid: b3cefa392a545304baa10fa50a330ccc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5586,10 +5650,15 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2264541140631646327, guid: b3cefa392a545304baa10fa50a330ccc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7653781531601556835, guid: b3cefa392a545304baa10fa50a330ccc,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1451246449}
   m_SourcePrefab: {fileID: 100100000, guid: b3cefa392a545304baa10fa50a330ccc, type: 3}
 --- !u!1 &1206991747411300932
 GameObject:

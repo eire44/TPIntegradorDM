@@ -21,6 +21,7 @@ public class disparar : MonoBehaviour
 
     public void disparo()
     {
+        velocidadBala = dificultad.instancia.velocidadBalaJ;
         GameObject bala = Instantiate(balaPrefab, puntoDisparo.position, puntoDisparo.rotation);
         Rigidbody rb = bala.GetComponent<Rigidbody>();
         rb.velocity = puntoDisparo.forward * velocidadBala;

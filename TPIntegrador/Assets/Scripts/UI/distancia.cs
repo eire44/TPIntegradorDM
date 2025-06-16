@@ -26,7 +26,41 @@ public class distancia : MonoBehaviour
     void Update()
     {
         tiempoTranscurrido += Time.deltaTime;
-        distanciaRecorrida = velocidad * tiempoTranscurrido;
+        distanciaRecorrida = movEscenario.instancia.velocidad * tiempoTranscurrido;
         distanciaText.text = ((int)distanciaRecorrida).ToString();
+
+
+        if (distanciaRecorrida > 200 && dificultad.instancia.nivelDificultad == 1)
+        {
+            dificultad.instancia.nivelDificultad++;
+        }
+        else if (distanciaRecorrida > 450 && dificultad.instancia.nivelDificultad == 2)
+        {
+            dificultad.instancia.nivelDificultad++;
+        }
+        else if (distanciaRecorrida > 750 && dificultad.instancia.nivelDificultad == 3)
+        {
+            dificultad.instancia.nivelDificultad++;
+        }
+        else if (distanciaRecorrida > 1100 && dificultad.instancia.nivelDificultad == 4)
+        {
+            dificultad.instancia.nivelDificultad++;
+        }
+        else if (distanciaRecorrida > 1500 && dificultad.instancia.nivelDificultad == 5)
+        {
+            dificultad.instancia.nivelDificultad++;
+        }
+        else if (distanciaRecorrida > 1950 && dificultad.instancia.nivelDificultad == 6)
+        {
+            dificultad.instancia.nivelDificultad++;
+        }
+        else if (distanciaRecorrida > 2450 && dificultad.instancia.nivelDificultad == 7)
+        {
+            dificultad.instancia.nivelDificultad++;
+        }
+        else if (distanciaRecorrida > 3000 && dificultad.instancia.nivelDificultad == 8)
+        {
+            dificultad.instancia.nivelDificultad++;
+        }
     }
 }

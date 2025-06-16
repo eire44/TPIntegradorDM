@@ -8,6 +8,7 @@ public class acelerometro : MonoBehaviour
 
     void Update()
     {
+        speed = dificultad.instancia.velocidadAc;
         Vector3 movimiento = Input.acceleration;
         transform.Translate(movimiento.x * speed * Time.deltaTime, 0, 0);
     }

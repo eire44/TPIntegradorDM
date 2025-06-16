@@ -8,7 +8,6 @@ public class monedas : MonoBehaviour
     public static monedas instancia;
 
     public GameObject monedasPrefab;
-    List<Transform> monedasLista;
     Transform nuevaMoneda;
 
     private void Awake()
@@ -16,17 +15,6 @@ public class monedas : MonoBehaviour
         instancia = this;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        monedasLista = new List<Transform>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        destruirObstaculo();
-    }
 
     public void spawnearObstaculo()
     {
@@ -39,31 +27,10 @@ public class monedas : MonoBehaviour
             nuevaMoneda = Instantiate(monedasPrefab.transform);
             //nuevoObstaculo.position = new Vector3(0f, 0f, generadorObstaculos.instanciaControlador.puntoDeSpawn);
 
-            nuevaMoneda.position = new Vector3(carrilX, posY, generadorObstaculos.instanciaControlador.aumentarPuntoSpawn(4f));
+            nuevaMoneda.position = new Vector3(carrilX, posY, generadorObstaculos.instanciaControlador.puntoDeSpawn + (i*3));
 
-
-            monedasLista.Add(nuevaMoneda);
+            movEscenario.instancia.obstaculosLista.Add(nuevaMoneda);
         }
         generadorObstaculos.instanciaControlador.spawneando = false;
-    }
-
-    void destruirObstaculo()
-    {
-        for (int i = 0; i < monedasLista.Count; i++)
-        {
-            Transform moneda = monedasLista[i];
-            if (moneda != null)
-            {
-                moneda.position += new Vector3(0, 0, -1) * 15f * Time.deltaTime;
-
-                if (moneda.position.z < -15f)
-                {
-                    Destroy(moneda.gameObject);
-                    monedasLista.Remove(moneda);
-                    i--;
-                }
-            }
-
-        }
     }
 }

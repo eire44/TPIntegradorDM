@@ -9,15 +9,12 @@ public class caminoDinamico : MonoBehaviour
 
     public GameObject camino;
     public GameObject trampa;
-    float spacingZ = 7.5f;
     public float velocidad = 15f;
 
-    private List<Transform> caminoLista = new List<Transform>();
-    private float tiempoEntreSpawns = 0.8f;
-    private float tiempoSiguienteSpawn = 0f;
-    private float zActual = 80f;
-
     public bool trampaSpawn = false;
+    public List<Transform> pisoLista = new List<Transform>();
+    [HideInInspector] public float puntoDeSpawn = 120f;
+    public bool spawneando = false;
 
     private void Awake()
     {
@@ -30,80 +27,74 @@ public class caminoDinamico : MonoBehaviour
         {
             if (child.name.Contains("Floor"))
             {
-                caminoLista.Add(child);
+                pisoLista.Add(child);
             }
         }
     }
 
     void Update()
     {
-
-        if (Time.time >= tiempoSiguienteSpawn)
+        if (pisoLista.Count > 0)
         {
-            GameObject nuevoBloque;
-            if (trampaSpawn)
+            Transform ultimoSpawn = pisoLista[pisoLista.Count - 1];
+
+            if ((!spawneando) && ((ultimoSpawn.transform.position.z <= (puntoDeSpawn - 18)) || ultimoSpawn == null))
             {
-                trampaSpawn = false;
-                nuevoBloque = Instantiate(trampa);
-                nuevoBloque.transform.position = new Vector3(0f, -4.71f, zActual);
-                generadorObstaculos.instanciaControlador.spawneando = false;
-            } else
-            {
-                nuevoBloque = Instantiate(camino);
-                nuevoBloque.transform.position = new Vector3(0f, -1f, zActual);
-                generadorObstaculos.instanciaControlador.noSpawn = false;
+                // && ((movEscenario.instancia.obstaculosLista.Count == 1) || (movEscenario.instancia.obstaculosLista.Count == 0))
+                spawneando = true;
+                generarPiso();
             }
-            
-            caminoLista.Add(nuevoBloque.transform);
-
-            zActual += spacingZ;
-
-
-            //if (controladorObstaculos.instanciaControlador.noGenerarPiso)
-            //{
-            //    for (int i = 0; i < caminoLista.Count; i++)
-            //    {
-            //        Transform bloque = caminoLista[i];
-
-            //        if (bloque.position.z >= controladorObstaculos.instanciaControlador.puntoDeSpawn - 5 && bloque.position.z <= controladorObstaculos.instanciaControlador.puntoDeSpawn + 4)
-            //        {
-            //            Destroy(bloque.gameObject);
-            //            caminoLista.RemoveAt(i);
-            //            i--;
-            //        }
-            //    }
-            //    controladorObstaculos.instanciaControlador.noGenerarPiso = false;
-            //    controladorObstaculos.instanciaControlador.spawneando = false;
-            //}
-
-
-            tiempoSiguienteSpawn = Time.time + tiempoEntreSpawns;
+        }
+        else
+        {
+            spawneando = true;
+            generarPiso();
         }
 
-        //if (ultimoBloque.z <= (zActual - 4))
-        //{
-        //    //generarSiguienteBloque = true;
-        //    
-        //}
-
-        moverYDestruirCamino();
+        destruirObstaculo();
     }
 
-    void moverYDestruirCamino()
+    void generarPiso()
     {
-        for (int i = 0; i < caminoLista.Count; i++)
+        GameObject nuevoBloque;
+        if (trampaSpawn)
         {
-            Transform bloque = caminoLista[i];
-            if (bloque == null) continue;
+            trampaSpawn = false;
+            nuevoBloque = Instantiate(trampa);
+            nuevoBloque.transform.position = new Vector3(0f, -4.71f, puntoDeSpawn);
+            movEscenario.instancia.obstaculosLista.Add(nuevoBloque.transform);  
+            generadorObstaculos.instanciaControlador.spawneando = false;
+        }
+        else
+        {
+            nuevoBloque = Instantiate(camino);
+            nuevoBloque.transform.position = new Vector3(0f, -1f, puntoDeSpawn);
+            //generadorObstaculos.instanciaControlador.noSpawn = false;
+        }
 
-            bloque.position += Vector3.back * velocidad * Time.deltaTime;
+        pisoLista.Add(nuevoBloque.transform);
+        spawneando = false;
+        
+    }
 
-            if (bloque.position.z < -30f)
+    void destruirObstaculo()
+    {
+        for (int i = 0; i < pisoLista.Count; i++)
+        {
+            Transform obstaculo = pisoLista[i];
+            if (obstaculo != null)
             {
-                Destroy(bloque.gameObject);
-                caminoLista.RemoveAt(i);
-                i--;
+                obstaculo.position += new Vector3(0, 0, -1) * velocidad * Time.deltaTime;
+
+                if (obstaculo.position.z < -30f)
+                {
+                    Destroy(obstaculo.gameObject);
+                    pisoLista.Remove(obstaculo);
+                    movEscenario.instancia.obstaculosLista.Remove(obstaculo);
+                    i--;
+                }
             }
+
         }
     }
 }
