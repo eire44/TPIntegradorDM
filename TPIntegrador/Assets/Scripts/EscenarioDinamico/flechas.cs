@@ -15,11 +15,11 @@ public class flechas : MonoBehaviour
     
     public void spawnearFlechas()
     {
-        float arribaOabajo = 5.6f;
+        float arribaOabajo = 3.5f;
         int posY = Random.Range(0, 2);
         if (posY == 0)
         {
-            arribaOabajo = 5.6f;
+            arribaOabajo = 3.5f;
         }
         else
         {

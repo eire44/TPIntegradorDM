@@ -46,7 +46,7 @@ public class generadorObstaculos : MonoBehaviour
     private void generarObstaculo()
     {
 
-        generador = Random.Range(0, 5);
+        generador = Random.Range(0, 6);
 
         if ((generador == 0 || generador == 1))
         {
@@ -63,6 +63,10 @@ public class generadorObstaculos : MonoBehaviour
         else if (generador == 4)
         {
             flechas.instancia.spawnearFlechas();
+        }
+        else if (generador == 5)
+        {
+            spawnearPUs.instancia.spawnearObstaculo();
         }
     }
 }

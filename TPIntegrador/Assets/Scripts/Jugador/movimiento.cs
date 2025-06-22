@@ -15,6 +15,7 @@ public class movimiento : MonoBehaviour
     private Rigidbody rb;
 
     public int contadorMonedas = 0;
+    public bool monedasPUactivo = false;
 
 
     private void Awake()
@@ -76,11 +77,35 @@ public class movimiento : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Coin"))
         {
-            contadorMonedas++;
+            if(monedasPUactivo)
+            {
+                Debug.Log("ACTIVO");
+                contadorMonedas += 2;
+            } else
+            {
+                contadorMonedas++;
+                Debug.Log("DESACTIVO");
+            }
             Destroy(collision.gameObject);
         } else if(collision.gameObject.layer == 3 && (!collision.gameObject.name.Contains("FloorTrap")))
         {
             Menu.instancia.gameOver();
+        } else if(collision.gameObject.CompareTag("monedasPU"))
+        {
+            monedasPUactivo = true;
+            Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("menosMonedasPu"))
+        {
+            if(contadorMonedas > 10)
+            {
+                contadorMonedas -= 10;
+            } else
+            {
+                contadorMonedas = 0;
+            }
+            
+            Destroy(collision.gameObject);
         }
     }
 

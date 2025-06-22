@@ -28,12 +28,12 @@ public class dispararFlechas : MonoBehaviour
     {
         if(gameObject.name.Contains("Clone"))
         {
-            float posY = 0.2f;
+            float posY = transform.position.y - 1f;
             for (int i = 0; i < 3; i++)
             {
                 GameObject flecha = Instantiate(arrows);
                 flecha.transform.position = new Vector3(transform.position.x - 1.1f, posY, transform.position.z);
-                posY += 1.2f;
+                posY += 1f;
             }
         }
     }

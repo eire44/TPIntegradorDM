@@ -7,6 +7,8 @@ TagManager:
   - Destroyable
   - Bullet
   - Coin
+  - monedasPU
+  - menosMonedasPu
   layers:
   - Default
   - TransparentFX

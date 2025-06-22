@@ -12,6 +12,8 @@ public class Menu : MonoBehaviour
     public GameObject CanvasUI;
     public GameObject gameOverUI;
     public GameObject UiPrincipal;
+    public TMP_Text distanciaActual;
+    public TMP_Text distanciaRecord;
 
     private void Awake()
     {
@@ -41,7 +43,11 @@ public class Menu : MonoBehaviour
         UiPrincipal.SetActive(false);
         gameOverUI.SetActive(true);
 
-        gameOverUI.GetComponentInChildren<TMP_Text>().text = ((int)distancia.instancia.distanciaRecorrida).ToString();
+        distanciaActual.text = ((int)distancia.instancia.distanciaRecorrida).ToString();
+
+        RecordManager.GuardarRecord(distancia.instancia.distanciaRecorrida);
+        float record = RecordManager.CargarRecord();
+        distanciaRecord.text = "Record Distance: " + (int)record;
         Time.timeScale = 0f;
     }
 }

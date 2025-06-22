@@ -8,6 +8,7 @@ public class dificultad : MonoBehaviour
     public int velocidadAc = 10;
     public int nivelDificultad = 1;
     public float velocidadBalaJ = 25f;
+    public int vidasE = 3;
 
     private void Awake()
     {
@@ -33,6 +34,7 @@ public class dificultad : MonoBehaviour
             movEscenario.instancia.velocidad = 25;
             caminoDinamico.instancia.velocidad = 25;
             velocidadBalaJ = 30;
+            vidasE = 4;
         }
         else if (nivelDificultad == 4)
         {
@@ -51,6 +53,7 @@ public class dificultad : MonoBehaviour
             velocidadAc = 14;
             movEscenario.instancia.velocidad = 40;
             caminoDinamico.instancia.velocidad = 40;
+            vidasE = 5;
         }
         else if (nivelDificultad == 7)
         {
@@ -70,6 +73,7 @@ public class dificultad : MonoBehaviour
             movEscenario.instancia.velocidad = 55;
             caminoDinamico.instancia.velocidad = 55;
             velocidadBalaJ = 45;
+            vidasE = 6;
         }
     }
 }

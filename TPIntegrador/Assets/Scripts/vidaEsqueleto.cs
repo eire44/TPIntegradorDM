@@ -5,30 +5,31 @@ using UnityEngine.UI;
 
 public class vidaEsqueleto : MonoBehaviour
 {
-    //int contadorDaño = 0;
-    int vidaTotal = 3;
+    int vidaActual = 3;
     int Daño = 1;
     public Slider SliderVida;
 
     private void Start()
     {
-        SliderVida.value = vidaTotal;
+        SliderVida.value = dificultad.instancia.vidasE;
+        vidaActual = dificultad.instancia.vidasE;
     }
     void Update()
     {
-        if(vidaTotal == 0)
+        if(vidaActual == 0)
         {
             Destroy(gameObject);
         }
     }
     void RestarVida()
     {
-        vidaTotal -= Daño;
+        Debug.Log(dificultad.instancia.vidasE);
+        vidaActual -= Daño;
         ActualizarSlider();
     }
     void ActualizarSlider()
     {
-        SliderVida.value = vidaTotal;
+        SliderVida.value = vidaActual;
     }
     void OnCollisionEnter(Collision collision)
     {

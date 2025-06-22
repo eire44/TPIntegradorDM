@@ -10,6 +10,7 @@ public class obstaculos : MonoBehaviour
     public GameObject columna;
     public GameObject escombros;
     public GameObject esqueleto;
+    public GameObject trampaFuego;
 
     Transform nuevoObstaculo;
 
@@ -20,7 +21,7 @@ public class obstaculos : MonoBehaviour
 
     public void spawnearObstaculo()
     {
-        int obstaculoTipo = Random.Range(0, 5);
+        int obstaculoTipo = Random.Range(0, 6);
         int carrilX = Random.Range(-1, 2);
 
         float posY = 0f;
@@ -47,10 +48,16 @@ public class obstaculos : MonoBehaviour
         {
             nuevoObstaculo = Instantiate(escombros.transform);
             carrilX = 0;
-        } else
+        }
+        else if (obstaculoTipo == 4)
         {
             nuevoObstaculo = Instantiate(esqueleto.transform);
             posY = -1;
+        } else
+        {
+            nuevoObstaculo = Instantiate(trampaFuego.transform);
+            Debug.Log(trampaFuego.name);
+            posY = -0.8f;
         }
 
         nuevoObstaculo.position = new Vector3(carrilX, posY, generadorObstaculos.instanciaControlador.puntoDeSpawn);
