@@ -17,7 +17,7 @@ public class movimiento : MonoBehaviour
     public int contadorMonedas = 0;
     public bool monedasPUactivo = false;
 
-
+    public GameObject TextMenos10;
     private void Awake()
     {
         instancia = this;
@@ -104,9 +104,17 @@ public class movimiento : MonoBehaviour
             {
                 contadorMonedas = 0;
             }
-            
+
+            TextMenos10.SetActive(true);
+            StartCoroutine(DesactivarTextoMenos10());
+
             Destroy(collision.gameObject);
         }
+    }
+    IEnumerator DesactivarTextoMenos10()
+    {
+        yield return new WaitForSeconds(2f); 
+        TextMenos10.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
