@@ -16,8 +16,15 @@ public class movimiento : MonoBehaviour
 
     public int contadorMonedas = 0;
     public bool monedasPUactivo = false;
+    public bool escudoPUactivo = false;
 
     public GameObject TextMenos10;
+
+    float crouchColliderHeight = 1f;
+    public float crouchTransitionSpeed = 1f;
+    private BoxCollider capsuleCollider;
+    private bool isCrouching = false;
+    private float tiempoRoll = 2f;
     private void Awake()
     {
         instancia = this;
@@ -26,10 +33,24 @@ public class movimiento : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        capsuleCollider = GetComponent<BoxCollider>();
     }
 
     void Update()
     {
+        if(isCrouching)
+        {
+            capsuleCollider.size = new Vector3(capsuleCollider.size.x, Mathf.Lerp(capsuleCollider.size.y, crouchColliderHeight, Time.deltaTime * crouchTransitionSpeed), capsuleCollider.size.z);
+            tiempoRoll -= Time.deltaTime;
+            if(tiempoRoll < 0)
+            {
+                isCrouching = false;
+                capsuleCollider.size = new Vector3(capsuleCollider.size.x, 1.818104f, capsuleCollider.size.z);
+                capsuleCollider.center = new Vector3(capsuleCollider.center.x, 0.9190524f, capsuleCollider.center.z);
+                tiempoRoll = 2f;
+            }
+        }
+
 
         if (Input.touchCount > 0)
         {
@@ -54,6 +75,9 @@ public class movimiento : MonoBehaviour
                     else if (distanciaTocada < -distanciaToque)
                     {
                         animator.SetTrigger("Roll");
+                        isCrouching = true;
+                        //capsuleCollider.size = new Vector3(capsuleCollider.size.x, crouchColliderHeight, capsuleCollider.size.z);
+                        capsuleCollider.center = new Vector3(capsuleCollider.center.x, 0.5f, capsuleCollider.center.z);
                     }
                     else
                     {
@@ -110,6 +134,11 @@ public class movimiento : MonoBehaviour
 
             Destroy(collision.gameObject);
         }
+        else if (collision.gameObject.CompareTag("escudoPU"))
+        {
+            escudoPUactivo = true;
+            Destroy(collision.gameObject);
+        }
     }
     IEnumerator DesactivarTextoMenos10()
     {
@@ -129,4 +158,5 @@ public class movimiento : MonoBehaviour
             }
         }
     }
+
 }

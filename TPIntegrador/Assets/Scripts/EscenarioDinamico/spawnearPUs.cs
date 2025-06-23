@@ -8,6 +8,7 @@ public class spawnearPUs : MonoBehaviour
 
     public GameObject monedasPU;
     public GameObject menosMonedasPU;
+    public GameObject escudoPU;
     Transform nuevoPU;
 
     private void Awake()
@@ -18,19 +19,21 @@ public class spawnearPUs : MonoBehaviour
 
     public void spawnearObstaculo()
     {
-        int tipoPU = Random.Range(0, 2);
+        int tipoPU = Random.Range(0, 4);
         int carrilX = Random.Range(-1, 2);
         float posY = 1f;
 
         if(tipoPU == 0)
         {
             nuevoPU = Instantiate(monedasPU.transform);
-        } else
+        } else if (tipoPU == 1 || tipoPU == 2)
         {
             nuevoPU = Instantiate(menosMonedasPU.transform);
+        } else
+        {
+            nuevoPU = Instantiate(escudoPU.transform);
         }
         
-        //nuevoObstaculo.position = new Vector3(0f, 0f, generadorObstaculos.instanciaControlador.puntoDeSpawn);
 
         nuevoPU.position = new Vector3(carrilX, posY, generadorObstaculos.instanciaControlador.puntoDeSpawn);
 

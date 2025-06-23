@@ -11,6 +11,7 @@ public class obstaculos : MonoBehaviour
     public GameObject escombros;
     public GameObject esqueleto;
     public GameObject trampaFuego;
+    public GameObject techo;
 
     Transform nuevoObstaculo;
 
@@ -21,7 +22,7 @@ public class obstaculos : MonoBehaviour
 
     public void spawnearObstaculo()
     {
-        int obstaculoTipo = Random.Range(0, 6);
+        int obstaculoTipo = Random.Range(0, 9);
         int carrilX = Random.Range(-1, 2);
 
         float posY = 0f;
@@ -29,20 +30,17 @@ public class obstaculos : MonoBehaviour
         if (obstaculoTipo == 0)
         {
             nuevoObstaculo = Instantiate(caja.transform);
-            //nuevoObstaculo.position = new Vector3(0f, 0f, generadorObstaculos.instanciaControlador.puntoDeSpawn);
         }
         else if (obstaculoTipo == 1)
         {
             nuevoObstaculo = Instantiate(barril.transform);
-            posY = +0.5f;
-            //nuevoObstaculo.position = new Vector3(0f, 0f, generadorObstaculos.instanciaControlador.puntoDeSpawn);
+            posY = 1f;
         }
         else if(obstaculoTipo == 2) 
         {
             nuevoObstaculo = Instantiate(columna.transform);
             carrilX = 0;
             posY = -1;
-            //nuevoObstaculo.position = new Vector3(0f, -1f, generadorObstaculos.instanciaControlador.puntoDeSpawn);
         }
         else if (obstaculoTipo == 3)
         {
@@ -51,13 +49,18 @@ public class obstaculos : MonoBehaviour
         }
         else if (obstaculoTipo == 4)
         {
-            nuevoObstaculo = Instantiate(esqueleto.transform);
-            posY = -1;
-        } else
+            nuevoObstaculo = Instantiate(techo.transform);
+            posY = 3.18f;
+            
+        }
+        else if (obstaculoTipo == 5)
         {
             nuevoObstaculo = Instantiate(trampaFuego.transform);
-            Debug.Log(trampaFuego.name);
             posY = -0.8f;
+        } else
+        {
+            nuevoObstaculo = Instantiate(esqueleto.transform);
+            posY = -1;
         }
 
         nuevoObstaculo.position = new Vector3(carrilX, posY, generadorObstaculos.instanciaControlador.puntoDeSpawn);
