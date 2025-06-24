@@ -9,7 +9,7 @@ public class generadorObstaculos : MonoBehaviour
     public bool spawneando = false;
     public int generador;
     [HideInInspector]  public float puntoDeSpawn = 120f;
-    [HideInInspector] public float puntoNuevoSpawn = 120f;
+    [HideInInspector] public float puntoNuevoSpawn = 25f;
 
 
     private void Awake()
@@ -47,7 +47,6 @@ public class generadorObstaculos : MonoBehaviour
     {
 
         generador = Random.Range(0, 100);
-        Debug.Log(generador);
 
         if (generador >= 0 && generador < 30)
         {
@@ -69,5 +68,20 @@ public class generadorObstaculos : MonoBehaviour
         {
             spawnearPUs.instancia.spawnearObstaculo();
         }
+    }
+
+    public bool verificarPosicion(float posZ)
+    {
+        float distanciaMinima = 15f;
+        foreach (var obj in movEscenario.instancia.obstaculosLista)
+        {
+            if (obj == null) continue;
+            if (Mathf.Abs(obj.transform.position.z - posZ) < distanciaMinima)
+            {
+                Debug.Log(obj.name);
+                return true;
+            }
+        }
+        return false;
     }
 }

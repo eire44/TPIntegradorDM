@@ -63,7 +63,17 @@ public class obstaculos : MonoBehaviour
             posY = -1;
         }
 
-        nuevoObstaculo.position = new Vector3(carrilX, posY, generadorObstaculos.instanciaControlador.puntoDeSpawn);
+        int intentos = 0;
+        int maxIntentos = 20;
+        float posZ = generadorObstaculos.instanciaControlador.puntoDeSpawn;
+        while (generadorObstaculos.instanciaControlador.verificarPosicion(posZ) && intentos < maxIntentos)
+        {
+            posZ += 4;
+            Debug.Log("CAMBIO EN X DE " + nuevoObstaculo.name);
+            intentos++;
+        }
+
+        nuevoObstaculo.position = new Vector3(carrilX, posY, posZ);
 
 
         movEscenario.instancia.obstaculosLista.Add(nuevoObstaculo);

@@ -25,9 +25,19 @@ public class flechas : MonoBehaviour
         {
             arribaOabajo = 1.4f;
         }
+        int intentos = 0;
+        int maxIntentos = 20;
+        float posZ = generadorObstaculos.instanciaControlador.puntoDeSpawn;
+        while (generadorObstaculos.instanciaControlador.verificarPosicion(posZ) && intentos < maxIntentos)
+        {
+            posZ += 4;
+            Debug.Log("CAMBIO EN X DE " + flechasLanzador.name);
+            intentos++;
+        }
+
+
         nuevoLanzador = Instantiate(flechasLanzador);
-        Debug.Log("SPAWN");
-        nuevoLanzador.transform.position = new Vector3(4.3f, arribaOabajo, generadorObstaculos.instanciaControlador.puntoDeSpawn);
+        nuevoLanzador.transform.position = new Vector3(4.3f, arribaOabajo, posZ);
         movEscenario.instancia.obstaculosLista.Add(nuevoLanzador.transform);
 
         generadorObstaculos.instanciaControlador.spawneando = false;

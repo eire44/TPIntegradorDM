@@ -23,7 +23,6 @@ public class vidaEsqueleto : MonoBehaviour
     }
     void RestarVida()
     {
-        Debug.Log(dificultad.instancia.vidasE);
         vidaActual -= Daño;
         ActualizarSlider();
     }
@@ -33,7 +32,6 @@ public class vidaEsqueleto : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
         if (!collision.gameObject.CompareTag("Player"))
         {
             if (collision.gameObject.CompareTag("Bullet"))

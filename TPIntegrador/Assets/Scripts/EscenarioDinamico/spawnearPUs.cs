@@ -33,9 +33,19 @@ public class spawnearPUs : MonoBehaviour
         {
             nuevoPU = Instantiate(escudoPU.transform);
         }
-        
 
-        nuevoPU.position = new Vector3(carrilX, posY, generadorObstaculos.instanciaControlador.puntoDeSpawn);
+        int intentos = 0;
+        int maxIntentos = 20;
+        float posZ = generadorObstaculos.instanciaControlador.puntoDeSpawn;
+        while (generadorObstaculos.instanciaControlador.verificarPosicion(posZ) && intentos < maxIntentos)
+        {
+            posZ += 4;
+            Debug.Log("CAMBIO EN X DE " + nuevoPU.name);
+            intentos++;
+        }
+
+
+        nuevoPU.position = new Vector3(carrilX, posY, posZ);
 
         movEscenario.instancia.obstaculosLista.Add(nuevoPU);
         

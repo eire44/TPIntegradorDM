@@ -11,7 +11,7 @@ public class movimiento : MonoBehaviour
     private Vector2 terminaToque;
 
     public float distanciaToque = 35f;
-    public float fuerzaSalto = 10f;
+    [HideInInspector] public float fuerzaSalto = 8.5f;
     private Rigidbody rb;
 
     public int contadorMonedas = 0;
@@ -40,6 +40,7 @@ public class movimiento : MonoBehaviour
     {
         if(isCrouching)
         {
+            transform.position = new Vector3(transform.position.x, Mathf.Lerp(transform.position.y, -1f, Time.deltaTime * crouchTransitionSpeed), transform.position.z);
             capsuleCollider.size = new Vector3(capsuleCollider.size.x, Mathf.Lerp(capsuleCollider.size.y, crouchColliderHeight, Time.deltaTime * crouchTransitionSpeed), capsuleCollider.size.z);
             tiempoRoll -= Time.deltaTime;
             if(tiempoRoll < 0)
@@ -103,12 +104,10 @@ public class movimiento : MonoBehaviour
         {
             if(monedasPUactivo)
             {
-                Debug.Log("ACTIVO");
                 contadorMonedas += 2;
             } else
             {
                 contadorMonedas++;
-                Debug.Log("DESACTIVO");
             }
             Destroy(collision.gameObject);
         } else if(collision.gameObject.layer == 3 && (!collision.gameObject.name.Contains("FloorTrap")))

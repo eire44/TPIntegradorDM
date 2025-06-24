@@ -60,10 +60,43 @@ public class caminoDinamico : MonoBehaviour
         if (trampaSpawn)
         {
             trampaSpawn = false;
-            nuevoBloque = Instantiate(trampa);
-            nuevoBloque.transform.position = new Vector3(0f, -4.71f, puntoDeSpawn);
-            movEscenario.instancia.obstaculosLista.Add(nuevoBloque.transform);  
-            generadorObstaculos.instanciaControlador.spawneando = false;
+
+            int intentos = 0;
+            int maxIntentos = 3;
+            float posZ = puntoDeSpawn;
+            while (generadorObstaculos.instanciaControlador.verificarPosicion(posZ) && intentos < maxIntentos)
+            {
+                intentos++;
+            }
+
+            if (intentos < maxIntentos)
+            {
+                nuevoBloque = Instantiate(trampa);
+                nuevoBloque.transform.position = new Vector3(0f, -4.71f, puntoDeSpawn);
+                movEscenario.instancia.obstaculosLista.Add(nuevoBloque.transform);
+                generadorObstaculos.instanciaControlador.spawneando = false;
+            }
+            else
+            {
+                Debug.Log("CAMBIO EN X DE " + trampa.name);
+                nuevoBloque = Instantiate(camino);
+                nuevoBloque.transform.position = new Vector3(0f, -1f, puntoDeSpawn);
+                generadorObstaculos.instanciaControlador.spawneando = false;
+            }
+
+            //if (generadorObstaculos.instanciaControlador.verificarPosicion(puntoDeSpawn))
+            //{
+            //    Debug.Log("CAMBIO EN X DE " + trampa.name);
+            //    nuevoBloque = Instantiate(camino);
+            //    nuevoBloque.transform.position = new Vector3(0f, -1f, puntoDeSpawn);
+            //    generadorObstaculos.instanciaControlador.spawneando = false;
+            //} else
+            //{
+            //    nuevoBloque = Instantiate(trampa);
+            //    nuevoBloque.transform.position = new Vector3(0f, -4.71f, puntoDeSpawn);
+            //    movEscenario.instancia.obstaculosLista.Add(nuevoBloque.transform);
+            //    generadorObstaculos.instanciaControlador.spawneando = false;
+            //}
         }
         else
         {

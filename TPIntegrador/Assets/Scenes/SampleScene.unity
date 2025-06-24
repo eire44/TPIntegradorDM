@@ -17246,7 +17246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanciaToque: 35
-  fuerzaSalto: 10
+  fuerzaSalto: 8.5
   contadorMonedas: 0
   monedasPUactivo: 0
   escudoPUactivo: 0
@@ -26581,6 +26581,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arrow_Throwing
+      objectReference: {fileID: 0}
+    - target: {fileID: 66574473599628967, guid: c45bb9ec139a82643a20b30c9fe08117,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8666891207562633423, guid: c45bb9ec139a82643a20b30c9fe08117,
         type: 3}

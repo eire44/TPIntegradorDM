@@ -22,12 +22,22 @@ public class monedas : MonoBehaviour
         int cantidad = Random.Range(3, 6);
         float posY = 0f;
 
+        int intentos = 0;
+        int maxIntentos = 20;
+        float posZ = generadorObstaculos.instanciaControlador.puntoDeSpawn;
+        while (generadorObstaculos.instanciaControlador.verificarPosicion(posZ) && intentos < maxIntentos)
+        {
+            posZ += 3;
+            Debug.Log("CAMBIO EN X DE " + nuevaMoneda.name);
+            intentos++;
+        }
+
         for (int i = 0; i < cantidad; i++)
         {
             nuevaMoneda = Instantiate(monedasPrefab.transform);
             //nuevoObstaculo.position = new Vector3(0f, 0f, generadorObstaculos.instanciaControlador.puntoDeSpawn);
 
-            nuevaMoneda.position = new Vector3(carrilX, posY, generadorObstaculos.instanciaControlador.puntoDeSpawn + (i*3));
+            nuevaMoneda.position = new Vector3(carrilX, posY, posZ + (i*3));
 
             movEscenario.instancia.obstaculosLista.Add(nuevaMoneda);
         }
