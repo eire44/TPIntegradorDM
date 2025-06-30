@@ -44,7 +44,7 @@ public class Menu : MonoBehaviour
 
         distanciaActual.text = ((int)distancia.instancia.distanciaRecorrida).ToString();
 
-        RecordManager.GuardarRecord(distancia.instancia.distanciaRecorrida);
+        RecordManager.GuardarRecord(distancia.instancia.distanciaRecorrida, movimiento.instancia.contadorMonedas);
         float record = RecordManager.CargarRecord();
         distanciaRecord.text = "Record Distance: " + (int)record;
         Time.timeScale = 0f;
