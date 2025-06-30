@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class eliminarBala : MonoBehaviour
 {
+    public GameObject monedasPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +26,13 @@ public class eliminarBala : MonoBehaviour
         {
             if(collision.gameObject.CompareTag("Destroyable"))
             {
+                if(collision.gameObject.name.Contains("Barrel"))
+                {
+                    Transform nuevaMoneda = Instantiate(monedasPrefab.transform);
+                    nuevaMoneda.position = new Vector3(collision.transform.position.x, 0f, collision.transform.position.z);
+                    movEscenario.instancia.obstaculosLista.Add(nuevaMoneda);
+
+                }
                 Destroy(collision.gameObject);
             }
             Destroy(gameObject);

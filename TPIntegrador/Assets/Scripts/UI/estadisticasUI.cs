@@ -29,11 +29,11 @@ public class estadisticasUI : MonoBehaviour
         estadisticas.SetActive(true);
         menuPrincipal.SetActive(false);
 
-        distanciaMaxima.text = RecordManager.CargarRecord().ToString();
+        distanciaMaxima.text = ((int)RecordManager.CargarRecord()).ToString();
         maxMonedas.text = RecordManager.CargarCantMonedas().ToString();
         partidasJugadas.text = RecordManager.CargarCantPartidas().ToString();
-        promedioDistancia.text = RecordManager.CargarPromedioDistancia().ToString();
-        distanciaTotal.text = RecordManager.CargarTotalDistancia().ToString();
+        promedioDistancia.text = ((int)RecordManager.CargarPromedioDistancia()).ToString();
+        distanciaTotal.text = ((int)RecordManager.CargarTotalDistancia()).ToString();
 
         Time.timeScale = 0f;
     }

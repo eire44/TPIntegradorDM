@@ -119,6 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 696be5c80e2a69a488eb329162aaffc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monedasPrefab: {fileID: 5389136639606099505, guid: c8993664480799b4c9e369050d21a760,
+    type: 3}
 --- !u!54 &2416940451621776427
 Rigidbody:
   m_ObjectHideFlags: 0
