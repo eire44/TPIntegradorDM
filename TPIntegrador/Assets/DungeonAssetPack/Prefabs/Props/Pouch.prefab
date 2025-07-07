@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6432108763617026474}
   - component: {fileID: 1104084159008630830}
   - component: {fileID: 957375846660143762}
+  - component: {fileID: -2315712815391433073}
   m_Layer: 0
   m_Name: Pouch
   m_TagString: Coin
@@ -105,3 +106,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5183059, y: 0.4324225, z: 0.33093172}
   m_Center: {x: -0.030445509, y: -0.043107554, z: 0.0075886026}
+--- !u!114 &-2315712815391433073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5389136639606099505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e0ef39406f7fac45b1f3a5485c739d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jugador: {fileID: 0}
+  rangoIman: 5
+  velocidadAtraccion: 10

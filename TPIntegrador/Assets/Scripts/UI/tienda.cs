@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class tienda : MonoBehaviour
 {
-    public Text precioIman;
-    public Text precioVidaExtra;
-    public Text precioEscudo;
+    public TMP_Text precioIman;
+    public TMP_Text precioVidaExtra;
+    public TMP_Text precioEscudo;
 
-    public Text monedasTotales;
+    public TMP_Text monedasTotales;
 
     public Button Iman;
     public Button VidaExtra;

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class monedasImantadas : MonoBehaviour
 {
-    public Transform jugador;
+    Transform jugador;
     public float rangoIman = 5f;
     public float velocidadAtraccion = 10f;
     // Start is called before the first frame update
     void Start()
     {
-        
+        jugador = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame

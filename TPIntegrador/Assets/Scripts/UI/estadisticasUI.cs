@@ -12,17 +12,9 @@ public class estadisticasUI : MonoBehaviour
     public TMP_Text partidasJugadas;
     public TMP_Text promedioDistancia;
     public TMP_Text distanciaTotal;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    public GameObject Tienda;
+   
 
     public void irAEstadisticas()
     {
@@ -45,4 +37,17 @@ public class estadisticasUI : MonoBehaviour
         menuPrincipal.SetActive(true);
         Time.timeScale = 1f;
     }
+
+    public void AbrirTienda()
+    {
+        menuPrincipal.SetActive(false);
+        Tienda.SetActive(true);
+    }
+    public void volverDeTienda()
+    {
+        Tienda.SetActive(false);
+        menuPrincipal.SetActive(true);
+        Time.timeScale = 1f;
+    }
+
 }
