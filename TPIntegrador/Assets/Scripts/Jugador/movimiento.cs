@@ -25,6 +25,7 @@ public class movimiento : MonoBehaviour
     private BoxCollider capsuleCollider;
     private bool isCrouching = false;
     private float tiempoRoll = 2f;
+    public GameObject escudoActivado;
     private void Awake()
     {
         instancia = this;
@@ -112,7 +113,18 @@ public class movimiento : MonoBehaviour
             Destroy(collision.gameObject);
         } else if(collision.gameObject.layer == 3 && (!collision.gameObject.name.Contains("FloorTrap")))
         {
-            Menu.instancia.gameOver();
+            if (escudoActivado.activeInHierarchy)
+            {
+                escudoActivado.SetActive(false);
+            }
+            else if (TiendaManager.CargarVidaExtra())
+            {
+                vidaExtra.instancia.activarVidaExtra();
+            } else
+            {
+                Menu.instancia.gameOver();
+            }
+            
         } else if(collision.gameObject.CompareTag("monedasPU"))
         {
             monedasPUactivo = true;
@@ -151,7 +163,17 @@ public class movimiento : MonoBehaviour
         {
             if (other.gameObject.name.Contains("FloorTrap"))
             {
-                Menu.instancia.gameOver();
+                if(escudoActivado.activeInHierarchy)
+                {
+                    escudoActivado.SetActive(false);
+                } else if (TiendaManager.CargarVidaExtra())
+                {
+                    vidaExtra.instancia.activarVidaExtra();
+                }
+                else
+                {
+                    Menu.instancia.gameOver();
+                }
                 animator.SetTrigger("Death");
     
             }

@@ -11,6 +11,7 @@ public class Menu : MonoBehaviour
     public GameObject CanvasUI;
     public GameObject gameOverUI;
     public GameObject UiPrincipal;
+    public GameObject UIpausa;
     public TMP_Text distanciaActual;
     public TMP_Text distanciaRecord;
 
@@ -21,6 +22,12 @@ public class Menu : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1f;
+        if(UIpausa.activeInHierarchy)
+        {
+            RecordManager.GuardarRecord(distancia.instancia.distanciaRecorrida, movimiento.instancia.contadorMonedas);
+            TiendaManager.GuardarRecord(true, movimiento.instancia.contadorMonedas, TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarIman(), TiendaManager.CargarVidaExtra(), TiendaManager.CargarEscudo());
+        }
+        
         SceneManager.LoadScene(1);
     }
     public void Exit()
@@ -45,6 +52,7 @@ public class Menu : MonoBehaviour
         distanciaActual.text = ((int)distancia.instancia.distanciaRecorrida).ToString();
 
         RecordManager.GuardarRecord(distancia.instancia.distanciaRecorrida, movimiento.instancia.contadorMonedas);
+        TiendaManager.GuardarRecord(true, movimiento.instancia.contadorMonedas, TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarIman(), TiendaManager.CargarVidaExtra(), TiendaManager.CargarEscudo());
         float record = RecordManager.CargarRecord();
         distanciaRecord.text = "Record Distance: " + (int)record;
         Time.timeScale = 0f;

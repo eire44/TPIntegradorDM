@@ -18361,6 +18361,7 @@ MonoBehaviour:
   CanvasUI: {fileID: 1225826901}
   gameOverUI: {fileID: 1741254358}
   UiPrincipal: {fileID: 1740156470}
+  UIpausa: {fileID: 1225826901}
   distanciaActual: {fileID: 151683328}
   distanciaRecord: {fileID: 2053535610}
 --- !u!114 &1074701754
