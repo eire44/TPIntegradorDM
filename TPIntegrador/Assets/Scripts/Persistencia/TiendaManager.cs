@@ -7,6 +7,12 @@ public class TiendaManager
 {
     private static string filePath = Application.persistentDataPath + "/tienda.json";
 
+    public static void reiniciarValores()
+    {
+        TiendaData data = new TiendaData(0, 15, 30, 25, false, false, false);
+        string json = JsonUtility.ToJson(data, true);
+        File.WriteAllText(filePath, json);
+    }
     public static void GuardarRecord(bool ganancia, int CantidadMonedas, int PrecioIman, int PrecioVidaExtra, int PrecioEscudo, bool Iman, bool VidaExtra, bool Escudo)
     {
         TiendaData data;

@@ -7,6 +7,7 @@ public class RecordManager
 {
     private static string filePath = Application.persistentDataPath + "/recordEstadisticas.json";
     
+
     public static void GuardarRecord(float nuevaDistancia, int maxMonedas)
     {
         RecordData data;

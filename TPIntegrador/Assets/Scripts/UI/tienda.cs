@@ -18,6 +18,7 @@ public class tienda : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //TiendaManager.reiniciarValores();
         precioIman.text = TiendaManager.CargarPrecioIman().ToString();
         precioVidaExtra.text = TiendaManager.CargarPrecioVidaExtra().ToString();
         precioEscudo.text = TiendaManager.CargarPrecioEscudo().ToString();
@@ -66,7 +67,7 @@ public class tienda : MonoBehaviour
     {
         actualizarTienda(TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra() + 10, TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarIman(), true, TiendaManager.CargarEscudo());
 
-        precioVidaExtra.text = TiendaManager.CargarPrecioIman().ToString();
+        precioVidaExtra.text = TiendaManager.CargarPrecioVidaExtra().ToString();
         monedasTotales.text = TiendaManager.CargarCantMonedas().ToString();
     }
 
@@ -74,12 +75,12 @@ public class tienda : MonoBehaviour
     {
         actualizarTienda(TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo() + 10, TiendaManager.CargarIman(), TiendaManager.CargarVidaExtra(), true);
 
-        precioEscudo.text = TiendaManager.CargarPrecioIman().ToString();
+        precioEscudo.text = TiendaManager.CargarPrecioEscudo().ToString();
         monedasTotales.text = TiendaManager.CargarCantMonedas().ToString();
     }
 
     void actualizarTienda(int precio, int precioIman, int precioVidaExtra, int precioEscudo, bool Iman, bool VidaExtra, bool Escudo)
     {
-        TiendaManager.GuardarRecord(false, RecordManager.CargarCantMonedas() - precio, precioIman, precioVidaExtra, precioEscudo, Iman, VidaExtra, Escudo);
+        TiendaManager.GuardarRecord(false, precio, precioIman, precioVidaExtra, precioEscudo, Iman, VidaExtra, Escudo);
     }
 }

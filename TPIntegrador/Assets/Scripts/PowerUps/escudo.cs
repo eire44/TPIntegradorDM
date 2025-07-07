@@ -23,10 +23,16 @@ public class escudo : MonoBehaviour
         if (TiendaManager.CargarEscudo() && pantallaUI.activeInHierarchy)
         {
             escudoBtn.enabled = true;
+            ColorBlock colors = escudoBtn.colors;
+            colors.normalColor = new Color(1, 1, 1, 1);
+            escudoBtn.colors = colors;
         }
         else
         {
             escudoBtn.enabled = false;
+            ColorBlock colors = escudoBtn.colors;
+            colors.normalColor = new Color(0.7f, 0.7f, 0.7f, 0.5f);
+            escudoBtn.colors = colors;
         }
 
         if(iniciarTiempo)

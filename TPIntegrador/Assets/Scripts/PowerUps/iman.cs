@@ -8,7 +8,7 @@ public class iman : MonoBehaviour
     public static iman instancia;
     public GameObject pantallaUI;
     public Button imanBtn;
-    public GameObject imanActivado;
+    //public GameObject imanActivado;
 
     float tiempoPU = 10f;
     public bool iniciarTiempo = false;
@@ -22,10 +22,16 @@ public class iman : MonoBehaviour
         if (TiendaManager.CargarIman() && pantallaUI.activeInHierarchy)
         {
             imanBtn.enabled = true;
+            ColorBlock colors = imanBtn.colors;
+            colors.normalColor = new Color(1, 1, 1, 1);
+            imanBtn.colors = colors;
         }
         else
         {
             imanBtn.enabled = false;
+            ColorBlock colors = imanBtn.colors;
+            colors.normalColor = new Color(0.7f, 0.7f, 0.7f, 0.5f);
+            imanBtn.colors = colors;
         }
 
         if (iniciarTiempo)
@@ -33,7 +39,7 @@ public class iman : MonoBehaviour
             tiempoPU -= Time.deltaTime;
             if (tiempoPU < 0)
             {
-                imanActivado.SetActive(false);
+                //imanActivado.SetActive(false);
                 tiempoPU = 10;
             }
         }
@@ -43,6 +49,6 @@ public class iman : MonoBehaviour
     {
         TiendaManager.GuardarRecord(false, 0, TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo(), false, TiendaManager.CargarVidaExtra(), TiendaManager.CargarEscudo());
         iniciarTiempo = true;
-        imanActivado.SetActive(true);
+        //imanActivado.SetActive(true);
     }
 }
