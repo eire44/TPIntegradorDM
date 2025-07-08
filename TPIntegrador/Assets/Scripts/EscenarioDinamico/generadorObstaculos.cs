@@ -10,7 +10,7 @@ public class generadorObstaculos : MonoBehaviour
     public int generador;
     [HideInInspector]  public float puntoDeSpawn = 120f;
     [HideInInspector] public float puntoNuevoSpawn = 25f;
-
+    int probabilidadSpawnTrampa = 40;
 
     private void Awake()
     {
@@ -45,26 +45,29 @@ public class generadorObstaculos : MonoBehaviour
 
     private void generarObstaculo()
     {
-
+        if(dificultad.instancia.nivelDificultad >= 5)
+        {
+            probabilidadSpawnTrampa = 45;
+        }
         generador = Random.Range(0, 100);
 
-        if (generador >= 0 && generador < 30)
+        if (generador >= 0 && generador < probabilidadSpawnTrampa)
         {
             obstaculos.instancia.spawnearObstaculo();
         }
-        else if (generador >= 30 && generador < 60)
-        {
-            monedas.instancia.spawnearObstaculo();
-        }
-        else if (generador >= 60 && generador < 70)
+        else if (generador >= probabilidadSpawnTrampa && generador < 50)
         {
             caminoDinamico.instancia.trampaSpawn = true;
         }
-        else if (generador >= 70 && generador < 85)
+        else if (generador >= 50 && generador < 80)
+        {
+            monedas.instancia.spawnearObstaculo();
+        }
+        else if (generador >= 80 && generador < 95)
         {
             flechas.instancia.spawnearFlechas();
         }
-        else if (generador >= 85 && generador < 100)
+        else if (generador >= 95 && generador < 100)
         {
             spawnearPUs.instancia.spawnearObstaculo();
         }

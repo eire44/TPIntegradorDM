@@ -28,31 +28,67 @@ public class tienda : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(RecordManager.CargarCantMonedas() > TiendaManager.CargarPrecioIman())
+        if(TiendaManager.CargarCantMonedas() >= TiendaManager.CargarPrecioIman())
         {
-            Iman.enabled = true;
+            if(TiendaManager.CargarIman())
+            {
+                desactivarBoton(Iman);
+            } else
+            {
+                activarBoton(Iman);
+            }
         } else
         {
-            Iman.enabled = false;
+            desactivarBoton(Iman);
         }
 
-        if (RecordManager.CargarCantMonedas() > TiendaManager.CargarPrecioVidaExtra())
+        if (TiendaManager.CargarCantMonedas() >= TiendaManager.CargarPrecioVidaExtra())
         {
-            VidaExtra.enabled = true;
+            if (TiendaManager.CargarVidaExtra())
+            {
+                desactivarBoton(VidaExtra);
+            }
+            else
+            {
+                activarBoton(VidaExtra);
+            }
         }
         else
         {
-            VidaExtra.enabled = false;
+            desactivarBoton(VidaExtra);
         }
 
-        if (RecordManager.CargarCantMonedas() > TiendaManager.CargarPrecioEscudo())
+        if (TiendaManager.CargarCantMonedas() >= TiendaManager.CargarPrecioEscudo())
         {
-            Escudo.enabled = true;
+            if (TiendaManager.CargarEscudo())
+            {
+                desactivarBoton(Escudo);
+            }
+            else
+            {
+                activarBoton(Escudo);
+            }
         }
         else
         {
-            Escudo.enabled = false;
+            desactivarBoton(Escudo);
         }
+    }
+
+    void activarBoton(Button boton)
+    {
+        boton.enabled = true;
+        ColorBlock colors = boton.colors;
+        colors.normalColor = new Color(1, 1, 1, 1);
+        boton.colors = colors;
+    }
+    void desactivarBoton(Button boton)
+    {
+        boton.enabled = false;
+        ColorBlock colors = boton.colors;
+        colors.normalColor = new Color(0.7f, 0.7f, 0.7f, 0.5f);
+        boton.colors = colors;
+
     }
 
     public void comprarIman()

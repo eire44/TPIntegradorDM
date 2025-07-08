@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class monedasImantadas : MonoBehaviour
 {
-    Transform jugador;
+    Transform imanActivo;
     public float rangoIman = 5f;
     public float velocidadAtraccion = 10f;
     // Start is called before the first frame update
     void Start()
     {
-        jugador = GameObject.FindGameObjectWithTag("Player").transform;
+        imanActivo = GameObject.FindGameObjectWithTag("Iman").transform;
     }
 
     // Update is called once per frame
@@ -18,11 +18,11 @@ public class monedasImantadas : MonoBehaviour
     {
         if(iman.instancia.iniciarTiempo)
         {
-            float distancia = Vector3.Distance(transform.position, jugador.position);
+            float distancia = Vector3.Distance(transform.position, imanActivo.position);
 
             if (distancia < rangoIman)
             {
-                Vector3 direccion = (jugador.position - transform.position).normalized;
+                Vector3 direccion = (imanActivo.position - transform.position).normalized;
                 transform.position += direccion * velocidadAtraccion * Time.deltaTime;
             }
         }
