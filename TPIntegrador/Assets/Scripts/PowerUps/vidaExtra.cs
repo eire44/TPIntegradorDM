@@ -8,15 +8,23 @@ public class vidaExtra : MonoBehaviour
     public static vidaExtra instancia;
     public GameObject pantallaUI;
     public Button vidaExtraBtn;
+    public GameObject ImageVida;
 
     private void Awake()
     {
         instancia = this;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (TiendaManager.CargarVidaExtra())
+        {
+            ImageVida.SetActive(true);
+        }
+        else
+        {
+            ImageVida.SetActive(false);
+        }
         
     }
 

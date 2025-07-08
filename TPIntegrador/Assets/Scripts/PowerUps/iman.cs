@@ -43,6 +43,7 @@ public class iman : MonoBehaviour
             {
                 iniciarTiempo = false;
                 imanActivado.SetActive(false);
+                animator.SetBool("Iman", false);
                 tiempoPU = 10;
             }
         }
@@ -53,6 +54,6 @@ public class iman : MonoBehaviour
         TiendaManager.GuardarRecord(false, 0, TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo(), false, TiendaManager.CargarVidaExtra(), TiendaManager.CargarEscudo());
         iniciarTiempo = true;
         imanActivado.SetActive(true);
-        animator.SetTrigger("Shoot");
+        animator.SetBool("Iman", true);
     }
 }
