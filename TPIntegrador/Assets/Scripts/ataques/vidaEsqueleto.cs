@@ -8,6 +8,7 @@ public class vidaEsqueleto : MonoBehaviour
     int vidaActual = 3;
     int Daño = 1;
     public Slider SliderVida;
+    public GameObject monedasPrefab;
 
     private void Start()
     {
@@ -18,6 +19,13 @@ public class vidaEsqueleto : MonoBehaviour
     {
         if(vidaActual == 0)
         {
+            for (int i = 0; i < 2; i++)
+            {
+                Transform nuevaMoneda = Instantiate(monedasPrefab.transform);
+                nuevaMoneda.position = new Vector3(transform.position.x, 0f, transform.position.z + i * 2);
+                movEscenario.instancia.obstaculosLista.Add(nuevaMoneda);
+            }
+            
             Destroy(gameObject);
         }
     }

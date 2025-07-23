@@ -22,7 +22,7 @@ public class obstaculos : MonoBehaviour
 
     public void spawnearObstaculo()
     {
-        int obstaculoTipo = Random.Range(0, 9);
+        int obstaculoTipo = Random.Range(0, 10);
         int carrilX = Random.Range(-1, 2);
 
         float posY = 0f;
@@ -59,13 +59,14 @@ public class obstaculos : MonoBehaviour
             posY = -0.8f;
         } else
         {
+            Debug.Log("ESQUELETO");
             nuevoObstaculo = Instantiate(esqueleto.transform);
             posY = -1;
         }
 
         int intentos = 0;
         int maxIntentos = 20;
-        float posZ = generadorObstaculos.instanciaControlador.puntoDeSpawn;
+        float posZ = 120f;
         while (generadorObstaculos.instanciaControlador.verificarPosicion(posZ) && intentos < maxIntentos)
         {
             posZ += 4;
@@ -76,7 +77,14 @@ public class obstaculos : MonoBehaviour
         nuevoObstaculo.position = new Vector3(carrilX, posY, posZ);
 
 
+        if (nuevoObstaculo.name.Contains("Skeleton"))
+        {
+            Debug.Log(nuevoObstaculo.position);
+        }
+
         movEscenario.instancia.obstaculosLista.Add(nuevoObstaculo);
+
+        Debug.Log(movEscenario.instancia.obstaculosLista[movEscenario.instancia.obstaculosLista.Count - 1]);
 
         generadorObstaculos.instanciaControlador.spawneando = false;
     }

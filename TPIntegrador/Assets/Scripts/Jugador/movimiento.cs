@@ -166,8 +166,12 @@ public class movimiento : MonoBehaviour
                 if(escudoActivado.activeInHierarchy)
                 {
                     escudoActivado.SetActive(false);
+                    other.transform.position = new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z - 5);
+                    transform.position = new Vector3(transform.position.x, -1f, transform.position.z);
                 } else if (TiendaManager.CargarVidaExtra())
                 {
+                    other.transform.position = new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z - 5);
+                    transform.position = new Vector3(transform.position.x, -1f, transform.position.z);
                     vidaExtra.instancia.activarVidaExtra();
                 }
                 else
