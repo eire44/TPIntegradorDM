@@ -30,6 +30,6 @@ public class vidaExtra : MonoBehaviour
 
     public void activarVidaExtra()
     {
-        TiendaManager.GuardarRecord(false, 0, TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarIman(), false, TiendaManager.CargarEscudo());
+        TiendaManager.GuardarRecord(false, 0, TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarPrecioAntorcha(), TiendaManager.CargarPrecioCasco(), TiendaManager.CargarIman(), false, TiendaManager.CargarEscudo(), TiendaManager.CargarAntorcha(), TiendaManager.CargarCasco());
     }
 }

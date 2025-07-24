@@ -49,7 +49,7 @@ public class escudo : MonoBehaviour
 
     public void activarEscudo()
     {
-        TiendaManager.GuardarRecord(false, 0, TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarIman(), TiendaManager.CargarVidaExtra(), false);
+        TiendaManager.GuardarRecord(false, 0, TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarPrecioAntorcha(), TiendaManager.CargarPrecioCasco(), TiendaManager.CargarIman(), TiendaManager.CargarVidaExtra(), false, TiendaManager.CargarAntorcha(), TiendaManager.CargarCasco());
         iniciarTiempo = true;
         escudoActivado.SetActive(true);
     }

@@ -17,6 +17,7 @@ public class movimiento : MonoBehaviour
     public int contadorMonedas = 0;
     public bool monedasPUactivo = false;
     public bool escudoPUactivo = false;
+    public GameObject casco;
 
     public GameObject TextMenos10;
 
@@ -113,7 +114,11 @@ public class movimiento : MonoBehaviour
             Destroy(collision.gameObject);
         } else if(collision.gameObject.layer == 3 && (!collision.gameObject.name.Contains("FloorTrap")))
         {
-            if (escudoActivado.activeInHierarchy)
+            if (collision.gameObject.name.Equals("Brick") && casco.activeInHierarchy)
+            {
+                casco.SetActive(false);
+            } 
+            else if (escudoActivado.activeInHierarchy)
             {
                 escudoActivado.SetActive(false);
             }

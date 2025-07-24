@@ -22,6 +22,9 @@ public class golpeEsqueleto : MonoBehaviour
         if (distancia < rangoJugador)
         {
             animator.SetTrigger("AtaqueEsqueleto");
+            Vector3 direccion = jugador.transform.position - transform.position;
+            Quaternion rotacionDeseada = Quaternion.LookRotation(direccion);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotacionDeseada, 10f * Time.deltaTime);
         }
     }
 }

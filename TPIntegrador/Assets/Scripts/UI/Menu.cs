@@ -25,7 +25,7 @@ public class Menu : MonoBehaviour
         if(UIpausa.activeInHierarchy)
         {
             RecordManager.GuardarRecord(distancia.instancia.distanciaRecorrida, movimiento.instancia.contadorMonedas);
-            TiendaManager.GuardarRecord(true, movimiento.instancia.contadorMonedas, TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarIman(), TiendaManager.CargarVidaExtra(), TiendaManager.CargarEscudo());
+            TiendaManager.GuardarRecord(true, movimiento.instancia.contadorMonedas, TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarPrecioAntorcha(), TiendaManager.CargarPrecioCasco(), TiendaManager.CargarIman(), TiendaManager.CargarVidaExtra(), TiendaManager.CargarEscudo(), TiendaManager.CargarAntorcha(), TiendaManager.CargarCasco());
         }
         
         SceneManager.LoadScene(1);
@@ -52,7 +52,7 @@ public class Menu : MonoBehaviour
         distanciaActual.text = ((int)distancia.instancia.distanciaRecorrida).ToString();
 
         RecordManager.GuardarRecord(distancia.instancia.distanciaRecorrida, movimiento.instancia.contadorMonedas);
-        TiendaManager.GuardarRecord(true, movimiento.instancia.contadorMonedas, TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarIman(), TiendaManager.CargarVidaExtra(), TiendaManager.CargarEscudo());
+        TiendaManager.GuardarRecord(true, movimiento.instancia.contadorMonedas, TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarPrecioAntorcha(), TiendaManager.CargarPrecioCasco(), TiendaManager.CargarIman(), TiendaManager.CargarVidaExtra(), TiendaManager.CargarEscudo(), TiendaManager.CargarAntorcha(), TiendaManager.CargarCasco());
         float record = RecordManager.CargarRecord();
         distanciaRecord.text = "Record Distance: " + (int)record;
         Time.timeScale = 0f;

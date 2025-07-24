@@ -51,7 +51,7 @@ public class iman : MonoBehaviour
 
     public void activarIman()
     {
-        TiendaManager.GuardarRecord(false, 0, TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo(), false, TiendaManager.CargarVidaExtra(), TiendaManager.CargarEscudo());
+        TiendaManager.GuardarRecord(false, 0, TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarPrecioAntorcha(), TiendaManager.CargarPrecioCasco(), false, TiendaManager.CargarVidaExtra(), TiendaManager.CargarEscudo(), TiendaManager.CargarAntorcha(), TiendaManager.CargarCasco());
         iniciarTiempo = true;
         imanActivado.SetActive(true);
         animator.SetBool("Iman", true);

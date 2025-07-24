@@ -9,11 +9,11 @@ public class TiendaManager
 
     public static void reiniciarValores()
     {
-        TiendaData data = new TiendaData(0, 15, 30, 25, false, false, false);
+        TiendaData data = new TiendaData(0, 15, 30, 25, 10, 10, false, false, false, false, false);
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(filePath, json);
     }
-    public static void GuardarRecord(bool ganancia, int CantidadMonedas, int PrecioIman, int PrecioVidaExtra, int PrecioEscudo, bool Iman, bool VidaExtra, bool Escudo)
+    public static void GuardarRecord(bool ganancia, int CantidadMonedas, int PrecioIman, int PrecioVidaExtra, int PrecioEscudo, int PrecioAntorcha, int PrecioCasco, bool Iman, bool VidaExtra, bool Escudo, bool Antorcha, bool Casco)
     {
         TiendaData data;
         if (File.Exists(filePath))
@@ -23,7 +23,7 @@ public class TiendaManager
         }
         else
         {
-            data = new TiendaData(0, 15, 30, 25, false, false, false);
+            data = new TiendaData(0, 15, 30, 25, 10, 10, false, false, false, false, false);
         }
 
 
@@ -39,9 +39,13 @@ public class TiendaManager
         data.precioIman = PrecioIman;
         data.precioVidaExtra = PrecioVidaExtra;
         data.precioEscudo = PrecioEscudo;
+        data.precioAntorcha = PrecioAntorcha;
+        data.precioCasco = PrecioCasco;
         data.iman = Iman;
         data.vidaExtra = VidaExtra;
         data.escudo = Escudo;
+        data.antorcha = Antorcha;
+        data.casco = Casco;
 
         string nuevoJson = JsonUtility.ToJson(data, true);
         File.WriteAllText(filePath, nuevoJson);
@@ -101,6 +105,32 @@ public class TiendaManager
         }
     }
 
+    public static int CargarPrecioAntorcha()
+    {
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            TiendaData data = JsonUtility.FromJson<TiendaData>(json);
+            return data.precioAntorcha;
+        }
+        else
+        {
+            return 10;
+        }
+    }
+    public static int CargarPrecioCasco()
+    {
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            TiendaData data = JsonUtility.FromJson<TiendaData>(json);
+            return data.precioCasco;
+        }
+        else
+        {
+            return 10;
+        }
+    }
 
     public static bool CargarIman()
     {
@@ -135,6 +165,34 @@ public class TiendaManager
             string json = File.ReadAllText(filePath);
             TiendaData data = JsonUtility.FromJson<TiendaData>(json);
             return data.escudo;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public static bool CargarAntorcha()
+    {
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            TiendaData data = JsonUtility.FromJson<TiendaData>(json);
+            return data.antorcha;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public static bool CargarCasco()
+    {
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            TiendaData data = JsonUtility.FromJson<TiendaData>(json);
+            return data.casco;
         }
         else
         {

@@ -28,7 +28,6 @@ public class monedas : MonoBehaviour
         while (generadorObstaculos.instanciaControlador.verificarPosicion(posZ) && intentos < maxIntentos)
         {
             posZ += 3;
-            Debug.Log("CAMBIO EN X DE " + nuevaMoneda.name);
             intentos++;
         }
 
