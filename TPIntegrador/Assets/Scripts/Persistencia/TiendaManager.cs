@@ -61,7 +61,7 @@ public class TiendaManager
         }
         else
         {
-            return RecordManager.CargarCantMonedas();
+            return 0;
         }
     }
 

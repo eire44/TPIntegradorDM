@@ -31,8 +31,6 @@ public class casco : MonoBehaviour
 
     public void activarCasco()
     {
-        TiendaManager.GuardarRecord(false, 0, TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarPrecioAntorcha(), TiendaManager.CargarPrecioCasco(), TiendaManager.CargarIman(), TiendaManager.CargarVidaExtra(), TiendaManager.CargarEscudo(), TiendaManager.CargarAntorcha(), false);
-        
         cascoActivado.SetActive(true);
     }
 }

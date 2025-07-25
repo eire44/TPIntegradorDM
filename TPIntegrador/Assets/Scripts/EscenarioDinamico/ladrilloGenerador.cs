@@ -5,20 +5,16 @@ using UnityEngine;
 public class ladrilloGenerador : MonoBehaviour
 {
     float tiempoSpawn = 10f;
+    float tiempoCuidado = 2f;
     public GameObject brick;
     public GameObject jugador;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public GameObject cuidado;
+    bool generar = false;
     void Update()
     {
         tiempoSpawn -= Time.deltaTime;
 
-        if (tiempoSpawn <= 0f)
+        if (tiempoSpawn <= 0f && !generar)
         {
             tiempoSpawn = 10f;
 
@@ -27,11 +23,26 @@ public class ladrilloGenerador : MonoBehaviour
             if (probabilidad == 0)
             {
                 Debug.Log("LADRILLO");
+                cuidado.SetActive(true);
+                generar = true;
+
+            }
+        }
+
+        if (generar)
+        {
+            tiempoCuidado -= Time.deltaTime;
+            if (tiempoCuidado <= 0f)
+            {
+                generar = false;
+                tiempoCuidado = 2f;
+                cuidado.SetActive(false);
                 GameObject ladrillo = Instantiate(brick);
 
                 int carrilX = Random.Range(-1, 2);
-                ladrillo.transform.position = new Vector3(carrilX, 9f, jugador.transform.position.z);
+                ladrillo.transform.position = new Vector3(carrilX, 8.02f, jugador.transform.position.z);
             }
+
         }
     }
 }

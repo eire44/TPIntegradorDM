@@ -157,7 +157,7 @@ public class tienda : MonoBehaviour
 
     public void comprarAntorcha()
     {
-        actualizarTienda(TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarPrecioAntorcha() + 10, TiendaManager.CargarPrecioCasco(), TiendaManager.CargarIman(), TiendaManager.CargarVidaExtra(), TiendaManager.CargarEscudo(), true, TiendaManager.CargarCasco());
+        actualizarTienda(TiendaManager.CargarPrecioAntorcha(), TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarPrecioAntorcha() + 10, TiendaManager.CargarPrecioCasco(), TiendaManager.CargarIman(), TiendaManager.CargarVidaExtra(), TiendaManager.CargarEscudo(), true, TiendaManager.CargarCasco());
 
         precioAntorcha.text = TiendaManager.CargarPrecioAntorcha().ToString();
         monedasTotales.text = TiendaManager.CargarCantMonedas().ToString();
@@ -165,7 +165,7 @@ public class tienda : MonoBehaviour
 
     public void comprarCasco()
     {
-        actualizarTienda(TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarPrecioAntorcha(), TiendaManager.CargarPrecioCasco() + 10, TiendaManager.CargarIman(), TiendaManager.CargarVidaExtra(), TiendaManager.CargarEscudo(), TiendaManager.CargarAntorcha(), true);
+        actualizarTienda(TiendaManager.CargarPrecioCasco(), TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarPrecioAntorcha(), TiendaManager.CargarPrecioCasco() + 10, TiendaManager.CargarIman(), TiendaManager.CargarVidaExtra(), TiendaManager.CargarEscudo(), TiendaManager.CargarAntorcha(), true);
 
         precioCasco.text = TiendaManager.CargarPrecioCasco().ToString();
         monedasTotales.text = TiendaManager.CargarCantMonedas().ToString();

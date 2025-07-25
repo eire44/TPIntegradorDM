@@ -116,9 +116,11 @@ public class movimiento : MonoBehaviour
         {
             if (collision.gameObject.name.Equals("Brick") && casco.activeInHierarchy)
             {
+                Debug.Log("MUERTE LADRILLO");
+                TiendaManager.GuardarRecord(false, 0, TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarPrecioAntorcha(), TiendaManager.CargarPrecioCasco(), TiendaManager.CargarIman(), TiendaManager.CargarVidaExtra(), TiendaManager.CargarEscudo(), TiendaManager.CargarAntorcha(), false);
+
                 casco.SetActive(false);
-            } 
-            else if (escudoActivado.activeInHierarchy)
+            } else if (escudoActivado.activeInHierarchy)
             {
                 escudoActivado.SetActive(false);
             }

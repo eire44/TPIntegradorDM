@@ -5,17 +5,22 @@ using UnityEngine;
 public class ladrillo : MonoBehaviour
 {
     float velocidad = 10f;
+    float tiempoCaida = 0.45f;
     void Update()
     {
         if (gameObject.name.Contains("Clone"))
         {
-            gameObject.transform.position += new Vector3(0, -1, 0) * velocidad * Time.deltaTime;
+            tiempoCaida -= Time.deltaTime;
+            if(tiempoCaida <= 0f)
+            {
+                gameObject.transform.position += new Vector3(0, -1, 0) * velocidad * Time.deltaTime;
+            }
         }
 
-        if (gameObject.transform.position.z < -15f)
-        {
-            Destroy(gameObject.transform.gameObject);
-        }
+        //if (gameObject.transform.position.z < -15f)
+        //{
+        //    Destroy(gameObject.transform.gameObject);
+        //}
     }
 
 

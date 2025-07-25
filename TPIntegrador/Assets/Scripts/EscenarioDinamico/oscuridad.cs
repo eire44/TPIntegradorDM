@@ -24,7 +24,7 @@ public class oscuridad : MonoBehaviour
 
             if (tiempoSpawn <= 0f)
             {
-                tiempoSpawn = 20f;
+                tiempoSpawn = 30f;
                 int probabilidad = Random.Range(0, 3);
 
                 if (probabilidad == 0)
