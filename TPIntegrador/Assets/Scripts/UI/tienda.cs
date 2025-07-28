@@ -23,11 +23,11 @@ public class tienda : MonoBehaviour
     void Start()
     {
         //TiendaManager.reiniciarValores();
-        precioIman.text = TiendaManager.CargarPrecioIman().ToString();
-        precioVidaExtra.text = TiendaManager.CargarPrecioVidaExtra().ToString();
-        precioEscudo.text = TiendaManager.CargarPrecioEscudo().ToString();
-        precioAntorcha.text = TiendaManager.CargarPrecioAntorcha().ToString();
-        precioCasco.text = TiendaManager.CargarPrecioCasco().ToString();
+        precioIman.text = "$" + TiendaManager.CargarPrecioIman().ToString();
+        precioVidaExtra.text = "$" + TiendaManager.CargarPrecioVidaExtra().ToString();
+        precioEscudo.text = "$" + TiendaManager.CargarPrecioEscudo().ToString();
+        precioAntorcha.text = "$" + TiendaManager.CargarPrecioAntorcha().ToString();
+        precioCasco.text = "$" + TiendaManager.CargarPrecioCasco().ToString();
         monedasTotales.text = TiendaManager.CargarCantMonedas().ToString();
     }
 
@@ -135,7 +135,7 @@ public class tienda : MonoBehaviour
     {
         actualizarTienda(TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioIman() + 10, TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarPrecioAntorcha(), TiendaManager.CargarPrecioCasco(), true, TiendaManager.CargarVidaExtra(), TiendaManager.CargarEscudo(), TiendaManager.CargarAntorcha(), TiendaManager.CargarCasco());
 
-        precioIman.text = TiendaManager.CargarPrecioIman().ToString();
+        precioIman.text = "$" + TiendaManager.CargarPrecioIman().ToString();
         monedasTotales.text = TiendaManager.CargarCantMonedas().ToString();
     }
 
@@ -143,7 +143,7 @@ public class tienda : MonoBehaviour
     {
         actualizarTienda(TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra() + 10, TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarPrecioAntorcha(), TiendaManager.CargarPrecioCasco(), TiendaManager.CargarIman(), true, TiendaManager.CargarEscudo(), TiendaManager.CargarAntorcha(), TiendaManager.CargarCasco());
 
-        precioVidaExtra.text = TiendaManager.CargarPrecioVidaExtra().ToString();
+        precioVidaExtra.text = "$" + TiendaManager.CargarPrecioVidaExtra().ToString();
         monedasTotales.text = TiendaManager.CargarCantMonedas().ToString();
     }
 
@@ -151,7 +151,7 @@ public class tienda : MonoBehaviour
     {
         actualizarTienda(TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo() + 10, TiendaManager.CargarPrecioAntorcha(), TiendaManager.CargarPrecioCasco(), TiendaManager.CargarIman(), TiendaManager.CargarVidaExtra(), true, TiendaManager.CargarAntorcha(), TiendaManager.CargarCasco());
 
-        precioEscudo.text = TiendaManager.CargarPrecioEscudo().ToString();
+        precioEscudo.text = "$" + TiendaManager.CargarPrecioEscudo().ToString();
         monedasTotales.text = TiendaManager.CargarCantMonedas().ToString();
     }
 
@@ -159,7 +159,7 @@ public class tienda : MonoBehaviour
     {
         actualizarTienda(TiendaManager.CargarPrecioAntorcha(), TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarPrecioAntorcha() + 10, TiendaManager.CargarPrecioCasco(), TiendaManager.CargarIman(), TiendaManager.CargarVidaExtra(), TiendaManager.CargarEscudo(), true, TiendaManager.CargarCasco());
 
-        precioAntorcha.text = TiendaManager.CargarPrecioAntorcha().ToString();
+        precioAntorcha.text = "$" + TiendaManager.CargarPrecioAntorcha().ToString();
         monedasTotales.text = TiendaManager.CargarCantMonedas().ToString();
     }
 
@@ -167,7 +167,7 @@ public class tienda : MonoBehaviour
     {
         actualizarTienda(TiendaManager.CargarPrecioCasco(), TiendaManager.CargarPrecioIman(), TiendaManager.CargarPrecioVidaExtra(), TiendaManager.CargarPrecioEscudo(), TiendaManager.CargarPrecioAntorcha(), TiendaManager.CargarPrecioCasco() + 10, TiendaManager.CargarIman(), TiendaManager.CargarVidaExtra(), TiendaManager.CargarEscudo(), TiendaManager.CargarAntorcha(), true);
 
-        precioCasco.text = TiendaManager.CargarPrecioCasco().ToString();
+        precioCasco.text = "$" + TiendaManager.CargarPrecioCasco().ToString();
         monedasTotales.text = TiendaManager.CargarCantMonedas().ToString();
     }
 

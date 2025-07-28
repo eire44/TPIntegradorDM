@@ -7,6 +7,7 @@ public class golpeEsqueleto : MonoBehaviour
     public GameObject jugador;
     float rangoJugador = 30f;
     Animator animator;
+    public AudioSource audioGruñido;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,7 @@ public class golpeEsqueleto : MonoBehaviour
 
         if (distancia < rangoJugador)
         {
+            audioGruñido.Play();
             animator.SetTrigger("AtaqueEsqueleto");
             Vector3 direccion = jugador.transform.position - transform.position;
             Quaternion rotacionDeseada = Quaternion.LookRotation(direccion);

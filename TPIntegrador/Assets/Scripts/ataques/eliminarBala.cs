@@ -5,10 +5,11 @@ using UnityEngine;
 public class eliminarBala : MonoBehaviour
 {
     public GameObject monedasPrefab;
+    GameObject audioBarril;
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioBarril = GameObject.Find("AudioRomperBarril");
     }
 
     // Update is called once per frame
@@ -28,6 +29,7 @@ public class eliminarBala : MonoBehaviour
             {
                 if(collision.gameObject.name.Contains("Barrel"))
                 {
+                    audioBarril.GetComponent<AudioSource>().Play();
                     Transform nuevaMoneda = Instantiate(monedasPrefab.transform);
                     nuevaMoneda.position = new Vector3(collision.transform.position.x, 0f, collision.transform.position.z);
                     movEscenario.instancia.obstaculosLista.Add(nuevaMoneda);

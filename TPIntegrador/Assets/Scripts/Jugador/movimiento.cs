@@ -27,6 +27,10 @@ public class movimiento : MonoBehaviour
     private bool isCrouching = false;
     private float tiempoRoll = 2f;
     public GameObject escudoActivado;
+
+    public AudioSource audioMonedas;
+    public AudioSource audioPU;
+    public AudioSource audioSalto;
     private void Awake()
     {
         instancia = this;
@@ -74,6 +78,7 @@ public class movimiento : MonoBehaviour
                     {
                         animator.SetTrigger("Jump");
                         Saltar();
+                        audioSalto.Play();
                     }
                     else if (distanciaTocada < -distanciaToque)
                     {
@@ -81,6 +86,7 @@ public class movimiento : MonoBehaviour
                         isCrouching = true;
                         //capsuleCollider.size = new Vector3(capsuleCollider.size.x, crouchColliderHeight, capsuleCollider.size.z);
                         capsuleCollider.center = new Vector3(capsuleCollider.center.x, 0.5f, capsuleCollider.center.z);
+                        audioSalto.Play();
                     }
                     else
                     {
@@ -104,6 +110,7 @@ public class movimiento : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Coin"))
         {
+            audioMonedas.Play();
             if(monedasPUactivo)
             {
                 contadorMonedas += 2;
@@ -134,12 +141,14 @@ public class movimiento : MonoBehaviour
             
         } else if(collision.gameObject.CompareTag("monedasPU"))
         {
+            audioPU.Play();
             monedasPUactivo = true;
             Destroy(collision.gameObject);
         }
         else if (collision.gameObject.CompareTag("menosMonedasPu"))
         {
-            if(contadorMonedas > 10)
+            audioPU.Play();
+            if (contadorMonedas > 10)
             {
                 contadorMonedas -= 10;
             } else
@@ -154,6 +163,7 @@ public class movimiento : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("escudoPU"))
         {
+            audioPU.Play();
             escudoPUactivo = true;
             Destroy(collision.gameObject);
         }

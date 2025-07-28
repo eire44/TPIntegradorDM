@@ -8,6 +8,7 @@ public class disparar : MonoBehaviour
     public Transform puntoDisparo;
     float velocidadBala = 25f;
     Animator animator;
+    public AudioSource audioDisparo;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -21,6 +22,7 @@ public class disparar : MonoBehaviour
 
     public void disparo()
     {
+        audioDisparo.Play();
         velocidadBala = dificultad.instancia.velocidadBalaJ;
         GameObject bala = Instantiate(balaPrefab, puntoDisparo.position, puntoDisparo.rotation * Quaternion.Euler(90, 0, 0));
         Rigidbody rb = bala.GetComponent<Rigidbody>();

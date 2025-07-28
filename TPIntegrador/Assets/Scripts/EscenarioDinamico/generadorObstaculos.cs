@@ -11,7 +11,7 @@ public class generadorObstaculos : MonoBehaviour
     [HideInInspector]  public float puntoDeSpawn = 120f;
     [HideInInspector] public float puntoNuevoSpawn = 25f;
     int probabilidadSpawnTrampa = 30;
-
+    bool ultimoSpawnEsTrampaPiso = false;
     private void Awake()
     {
         instanciaControlador = this;
@@ -49,27 +49,48 @@ public class generadorObstaculos : MonoBehaviour
         {
             probabilidadSpawnTrampa = 32;
         }
-        generador = Random.Range(0, 100);
+
+        if(dificultad.instancia.nivelDificultad >= 4)
+        {
+            generador = Random.Range(0, 100);
+        } else
+        {
+            generador = Random.Range(0, 95);
+        }
+
+        if(ultimoSpawnEsTrampaPiso)
+        {
+            if(generador >= probabilidadSpawnTrampa && generador < 55)
+            {
+                generador = 0;
+            }
+        }
+        
 
         if (generador >= 0 && generador < probabilidadSpawnTrampa)
         {
             obstaculos.instancia.spawnearObstaculo();
+            ultimoSpawnEsTrampaPiso = false;
         }
         else if (generador >= probabilidadSpawnTrampa && generador < 55)
         {
             caminoDinamico.instancia.trampaSpawn = true;
+            ultimoSpawnEsTrampaPiso = true;
         }
         else if (generador >= 55 && generador < 85)
         {
             monedas.instancia.spawnearObstaculo();
+            ultimoSpawnEsTrampaPiso = false;
         }
         else if (generador >= 85 && generador < 95)
         {
             flechas.instancia.spawnearFlechas();
+            ultimoSpawnEsTrampaPiso = false;
         }
         else if (generador >= 95 && generador < 100)
         {
             spawnearPUs.instancia.spawnearObstaculo();
+            ultimoSpawnEsTrampaPiso = false;
         }
     }
 
